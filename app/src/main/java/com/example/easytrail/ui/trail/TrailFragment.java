@@ -72,7 +72,7 @@ public class TrailFragment extends Fragment {
         return root;
     }
 
-    private class GetAllTrails extends AsyncTask<Void,Void,String>{
+    private class GetAllTrails extends AsyncTask<Void,Void,String>{//get all trails from data base
         @Override
         protected String doInBackground(Void... voids) {
             return networkConnection.getAllTrails();

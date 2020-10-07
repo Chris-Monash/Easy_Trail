@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.model.TrailResult;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.example.easytrail.R.color.colorPrimary;
 import static com.example.easytrail.R.color.primary_dark_material_dark;
@@ -36,6 +40,7 @@ public class TrailDetailActivity extends AppCompatActivity {
     TextView trailDistance_tv;
     TextView trailCompleteTime_tv;
     TextView trailAbout_tv;
+    ExtendedFloatingActionButton extendedFloatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class TrailDetailActivity extends AppCompatActivity {
         trailDistance_tv = findViewById(R.id.scrolling_distance_tv);
         trailCompleteTime_tv = findViewById(R.id.scrolling_completeTime_tv);
         trailAbout_tv = findViewById(R.id.scrolling_about_tv);
+        extendedFloatingActionButton = findViewById(R.id.startTrail_btn);
 
         Bundle bundle = getIntent().getExtras();
         TrailResult trail = bundle.getParcelable("trail");
@@ -87,6 +93,18 @@ public class TrailDetailActivity extends AppCompatActivity {
                 .placeholder(new ColorDrawable(Color.BLACK))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(trailGrade_im);
+
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrailDetailActivity.this,SpottingAnimalActivity.class);
+                Bundle trailBundle = new Bundle();
+                trailBundle.putParcelable("trail",trail);
+                intent.putExtras(trailBundle);
+                startActivity(intent);
+
+            }
+        });
 
     }
 }

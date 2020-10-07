@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SpottingAnimalActivity"></activity>
+        <activity android:name=".SpottingAnimalActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".TrailDetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Collapsing"></activity>
+            android:theme="@style/AppTheme.Collapsing">
+
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

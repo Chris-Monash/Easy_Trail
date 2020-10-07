@@ -35,4 +35,19 @@ public class NetworkConnection {
         }
         return results;
     }
+
+    public String getAnimalForTrail(String trail_id){
+        final String methodPath =  "details/" + trail_id;
+        Request.Builder builder = new Request.Builder();
+        builder.url(Base_URL + methodPath);
+        Request request = builder.build();
+
+        try{
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
 }

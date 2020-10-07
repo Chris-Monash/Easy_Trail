@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".TrailDetailActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="top"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/trail_toolbar">
+
+
+                <ImageView
+                    android:id="@+id/expandedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/background"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+
+
+
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/trail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <include layout="@layout/trail_scrolling"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extendedFloatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/rubik"
+        android:gravity="center"
+        android:text="Start Trail"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/colorPrimary"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

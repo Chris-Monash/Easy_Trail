@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrailDetailActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_trail_detail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/scrolling_grade_tv">
+                <TextView
+                    android:id="@+id/scrolling_trail_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    tools:text="Arthurs Seat Walk"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/scrolling_grade_iv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+
+                />
+            <TextView
+                android:id="@+id/scrolling_grade_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/scrolling_grade_iv"
+                tools:text="grade 1"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Distance:"/>
+            <TextView
+                android:id="@+id/scrolling_distance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="1.8 KM"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginStart="16dp"
+                android:textColor="#0A602E"
+                android:text="Time to Complete:"/>
+            <TextView
+                android:id="@+id/scrolling_completeTime_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/roboto"
+                tools:text="1.8 KM"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000000"
+            android:text="About"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/scrolling_about_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="100dp"
+                    android:autoSizeMaxTextSize="12sp"
+                    tools:text="This is description"/>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>

@@ -1,6 +1,9 @@
 package com.example.easytrail.model;
 
-public class TrailResult {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TrailResult implements Parcelable {
     private int trail_id;
     private String trail_name;
     private String address;
@@ -13,6 +16,23 @@ public class TrailResult {
     private String environment;
     private String difficulty_name;
     private String difficulty_image;
+
+    public TrailResult(Parcel in){
+        this.trail_id = in.readInt();
+        this.trail_name = in.readString();
+        this.address = in.readString();
+        this.route_type = in.readString();
+        this.distance = in.readString();
+        this.complete_time = in.readString();
+        this.facilities = in.readString();
+        this.description = in.readString();
+        this.trail_image = in.readString();
+        this.environment = in.readString();
+        this.difficulty_name = in.readString();
+        this.difficulty_image = in.readString();
+    }
+
+
 
     public TrailResult(int trail_id, String trail_name, String address, String route_type, String distance, String complete_time, String facilities, String description, String trail_image, String environment, String difficulty_name, String difficulty_image) {
         this.trail_id = trail_id;
@@ -28,6 +48,37 @@ public class TrailResult {
         this.difficulty_name = difficulty_name;
         this.difficulty_image = difficulty_image;
     }
+    public void writeToParcel(Parcel parcel, int flags){
+        parcel.writeInt(trail_id);
+        parcel.writeString(trail_name);
+        parcel.writeString(address);
+        parcel.writeString(route_type);
+        parcel.writeString(distance);
+        parcel.writeString(complete_time);
+        parcel.writeString(facilities);
+        parcel.writeString(description);
+        parcel.writeString(trail_image);
+        parcel.writeString(environment);
+        parcel.writeString(difficulty_name);
+        parcel.writeString(difficulty_image);
+
+    }
+
+    public int describeContents(){
+        return 0;
+    }
+
+    public static final Creator<TrailResult> CREATOR = new Creator<TrailResult>() {
+        @Override
+        public TrailResult createFromParcel(Parcel source) {
+            return new TrailResult(source);
+        }
+
+        @Override
+        public TrailResult[] newArray(int size) {
+            return new TrailResult[size];
+        }
+    };
 
     public int getTrail_id() {
         return trail_id;

@@ -1,6 +1,8 @@
 package com.example.easytrail.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +50,7 @@ public class TrailRecyclerViewAdapter extends RecyclerView.Adapter<TrailRecycler
 
     private List<TrailResult> trailResults;
     public Context context;
-    private AdapterView.OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public TrailRecyclerViewAdapter(Context context, List<TrailResult> trails) {
         this.context = context;
@@ -89,7 +91,7 @@ public class TrailRecyclerViewAdapter extends RecyclerView.Adapter<TrailRecycler
         KenBurnsView kbv_trailImage = viewHolder.kenBurnsView;
         Glide.with(context)
                 .load(trailResults.get(position).getTrail_image())//searchResults.get(position).getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(new ColorDrawable(Color.BLACK))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(kbv_trailImage);
 
@@ -97,6 +99,15 @@ public class TrailRecyclerViewAdapter extends RecyclerView.Adapter<TrailRecycler
 
 
         //item click
+        if (onItemClickListener != null){
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(viewHolder.itemView, position);
+
+                }
+            });
+        }
 
 
 
@@ -107,6 +118,6 @@ public class TrailRecyclerViewAdapter extends RecyclerView.Adapter<TrailRecycler
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
-        this.onItemClickListener = (AdapterView.OnItemClickListener) listener;
+        this.onItemClickListener = (OnItemClickListener) listener;
     }
 }

@@ -1,12 +1,15 @@
 package com.example.easytrail.ui.trail;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +22,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.easytrail.R;
+import com.example.easytrail.TrailDetailActivity;
 import com.example.easytrail.adapter.TrailRecyclerViewAdapter;
 import com.example.easytrail.model.TrailResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
@@ -35,6 +39,7 @@ public class TrailFragment extends Fragment {
     private TrailViewModel trailViewModel;
     private List<TrailResult> trails;
     private TrailRecyclerViewAdapter adapter;
+    ProgressBar progressBar;
     ViewPager2 viewPager2;
     NetworkConnection networkConnection = null;
 
@@ -45,7 +50,7 @@ public class TrailFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_trail, container, false);
 
         networkConnection = new NetworkConnection();
-
+        progressBar = root.findViewById(R.id.progressbar);
         viewPager2 = root.findViewById(R.id.trailViewPager);
         trails = new ArrayList<TrailResult>();
         adapter = new TrailRecyclerViewAdapter(getContext(),trails);
@@ -68,9 +73,34 @@ public class TrailFragment extends Fragment {
         viewPager2.setPageTransformer(compositePageTransformer);
         GetAllTrails getAllTrails = new GetAllTrails();
         getAllTrails.execute();
+        adapter.setOnItemClickListener(new TrailRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                TrailResult trail = trails.get(position);
+                Intent intent = new Intent(getActivity(), TrailDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("trail",trail);
+                intent.putExtras(bundle);
+                startActivity(intent);
+//                Toast.makeText(getContext(), "clicked " + trail.getTrail_name(),Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(getActivity(), AnimalDetail.class);
+//                intent.putExtra("animal_guid", animal.guid());
+//                intent.putExtra("imageUrl",animal.getImageUrl());
+//                getActivity().startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
 
         return root;
+
     }
+
+
+
 
     private class GetAllTrails extends AsyncTask<Void,Void,String>{//get all trails from data base
         @Override
@@ -116,6 +146,7 @@ public class TrailFragment extends Fragment {
                 });
 
                 viewPager2.setPageTransformer(compositePageTransformer);
+                progressBar.setVisibility(View.GONE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardCornerRadius="12dp"
-    android:elevation="5dp"
+    app:cardElevation="12dp"
+    app:cardUseCompatPadding="true"
     android:orientation="vertical">
 
 

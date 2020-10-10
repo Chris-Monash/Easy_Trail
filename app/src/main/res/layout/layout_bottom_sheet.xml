@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/bottomSheetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical"
+    tools:context=".SpottingAnimalActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Do you spot it?"
+        android:textColor="@color/textPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/confirmation_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/confirmation_animalName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimary"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                tools:text="Animal name"/>
+            <TextView
+                android:id="@+id/confirmation_animalType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Animal type"
+                android:textColor="@color/textSecondary"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorDivider"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:id="@+id/confirmation_not"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:text="NOT YET"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_not_interested"
+            app:cornerRadius="20dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmation_spotted"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:text="SPOTTED"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_pets"
+            app:cornerRadius="20dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

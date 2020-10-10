@@ -2,23 +2,38 @@ package com.example.easytrail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.adapter.AnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.model.TrailResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +53,11 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     NetworkConnection networkConnection = null;
     Toolbar toolbar;
+    RoundedImageView confirmImage;
+    TextView confirmAnimalName;
+    TextView confirmAnimalType;
+    MaterialButton confirmSpotted_btn;
+    MaterialButton confirmNot_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +108,41 @@ public class SpottingAnimalActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
+                AnimalResult animal = animals.get(position);
+                String confirm_animalName = animal.getComm_name();
+                String confirm_animalType = animal.getAnimal_type();
+                String confirm_animalImage = animal.getAnimal_image();
+//                GetConfirmInfo getConfirmInfo = new GetConfirmInfo();
+//                getConfirmInfo.execute(confirm_animalName,confirm_animalType,confirm_animalImage);
+//                AnimalResult animal = animals.get(position);
+//                Toast.makeText(getApplicationContext(), "Long clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SpottingAnimalActivity.this,R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_bottom_sheet,(LinearLayout)findViewById(R.id.bottomSheetContainer));
 
+                bottomSheetDialog.setContentView(bottomSheetView);
+
+                confirmImage = bottomSheetView.findViewById(R.id.confirmation_image);
+                confirmAnimalName = bottomSheetView.findViewById(R.id.confirmation_animalName);
+                confirmAnimalType = bottomSheetView.findViewById(R.id.confirmation_animalType);
+                confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
+                confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
+
+                Glide.with(getApplicationContext())
+                        .load(confirm_animalImage)//searchResults.get(position).getImageUrl())
+                        .centerCrop()
+                        .transform(new RoundedCorners(100))
+                        .placeholder(new ColorDrawable(Color.BLACK))
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(confirmImage);
+                confirmAnimalName.setText(confirm_animalName);
+                confirmAnimalType.setText(confirm_animalType);
+
+                bottomSheetDialog.show();
             }
         });
+
+
+
 
     }
 
@@ -150,6 +202,28 @@ public class SpottingAnimalActivity extends AppCompatActivity {
             }
         }
     }
+
+//    private class GetConfirmInfo extends AsyncTask<String,Void,String>{
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            Glide.with(getApplicationContext())
+//                    .load(strings[2])//searchResults.get(position).getImageUrl())
+//                    .placeholder(new ColorDrawable(Color.BLACK))
+//                    .transition(DrawableTransitionOptions.withCrossFade())
+//                    .into(confirmImage);
+//            confirmAnimalName.setText(strings[0]);
+//            confirmAnimalType.setText(strings[1]);
+//            return "1";
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SpottingAnimalActivity.this,R.style.BottomSheetDialogTheme);
+//            View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_bottom_sheet,(LinearLayout)findViewById(R.id.bottomSheetContainer));
+//            bottomSheetDialog.setContentView(bottomSheetView);
+//            bottomSheetDialog.show();
+//        }
+//    }
 
 
     private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score){

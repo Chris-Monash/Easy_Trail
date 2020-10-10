@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardCornerRadius="12dp"
-    android:elevation="5dp"
+    app:cardElevation="12dp"
+    app:cardUseCompatPadding="true"
+    android:checkable="true"
+    android:clickable="true"
     android:orientation="vertical">
 
 
@@ -22,7 +25,7 @@
             android:id="@+id/kbvAnimalImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -91,5 +94,5 @@
 
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 

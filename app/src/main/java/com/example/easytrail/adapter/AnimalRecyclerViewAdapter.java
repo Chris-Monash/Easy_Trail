@@ -16,8 +16,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.R;
 import com.example.easytrail.model.AnimalResult;
-import com.flaviofaria.kenburnsview.KenBurnsView;
-
 
 
 import java.util.List;
@@ -69,6 +67,25 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
                 .placeholder(new ColorDrawable(Color.BLACK))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivAnimalImage);
+        //item click
+        if (onItemClickListener != null){
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(viewHolder.itemView, position);
+
+                }
+
+            });
+            viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemClickListener.onItemLongClick(viewHolder.itemView, position);
+
+                    return true;
+                }
+            });
+        }
 
     }
 
@@ -93,4 +110,5 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
     public void setOnItemClickListener(OnItemClickListener listener){
         this.onItemClickListener = (OnItemClickListener) listener;
     }
+
 }

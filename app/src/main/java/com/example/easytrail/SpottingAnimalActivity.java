@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -33,6 +35,7 @@ import com.example.easytrail.model.TrailResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONArray;
@@ -58,6 +61,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     TextView confirmAnimalType;
     MaterialButton confirmSpotted_btn;
     MaterialButton confirmNot_btn;
+    MaterialCardView materialCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +101,15 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         GetAllAnimalsForTrail getAllAnimalsForTrail = new GetAllAnimalsForTrail();
         getAllAnimalsForTrail.execute(trail_id);
 
+//        materialCardView = findViewById(R.id.animalContainer_cardView);
+//        materialCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                materialCardView.setChecked(!materialCardView.isChecked());
+//                materialCardView.toggle();
+//            }
+//        });
+
 
         adapter.setOnItemClickListener(new AnimalRecyclerViewAdapter.OnItemClickListener() {
             @Override
@@ -108,36 +121,49 @@ public class SpottingAnimalActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
+                MaterialCardView materialCardView = view.findViewById(R.id.animalContainer_cardView);
                 AnimalResult animal = animals.get(position);
-                String confirm_animalName = animal.getComm_name();
-                String confirm_animalType = animal.getAnimal_type();
-                String confirm_animalImage = animal.getAnimal_image();
+                if (!materialCardView.isChecked()){
+                    materialCardView.setChecked(true);
+                    materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#99C0C0C0")));
+                    materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#CC000000")));
+//                    materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#000000")));
+
+
+
+                    String confirm_animalName = animal.getComm_name();
+                    String confirm_animalType = animal.getAnimal_type();
+                    String confirm_animalImage = animal.getAnimal_image();
 //                GetConfirmInfo getConfirmInfo = new GetConfirmInfo();
 //                getConfirmInfo.execute(confirm_animalName,confirm_animalType,confirm_animalImage);
 //                AnimalResult animal = animals.get(position);
 //                Toast.makeText(getApplicationContext(), "Long clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
-                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SpottingAnimalActivity.this,R.style.BottomSheetDialogTheme);
-                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_bottom_sheet,(LinearLayout)findViewById(R.id.bottomSheetContainer));
+                    final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SpottingAnimalActivity.this,R.style.BottomSheetDialogTheme);
+                    View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_bottom_sheet,(LinearLayout)findViewById(R.id.bottomSheetContainer));
 
-                bottomSheetDialog.setContentView(bottomSheetView);
+                    bottomSheetDialog.setContentView(bottomSheetView);
 
-                confirmImage = bottomSheetView.findViewById(R.id.confirmation_image);
-                confirmAnimalName = bottomSheetView.findViewById(R.id.confirmation_animalName);
-                confirmAnimalType = bottomSheetView.findViewById(R.id.confirmation_animalType);
-                confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
-                confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
+                    confirmImage = bottomSheetView.findViewById(R.id.confirmation_image);
+                    confirmAnimalName = bottomSheetView.findViewById(R.id.confirmation_animalName);
+                    confirmAnimalType = bottomSheetView.findViewById(R.id.confirmation_animalType);
+                    confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
+                    confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
-                Glide.with(getApplicationContext())
-                        .load(confirm_animalImage)//searchResults.get(position).getImageUrl())
-                        .centerCrop()
-                        .transform(new RoundedCorners(100))
-                        .placeholder(new ColorDrawable(Color.BLACK))
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .into(confirmImage);
-                confirmAnimalName.setText(confirm_animalName);
-                confirmAnimalType.setText(confirm_animalType);
+                    Glide.with(getApplicationContext())
+                            .load(confirm_animalImage)//searchResults.get(position).getImageUrl())
+                            .centerCrop()
+                            .transform(new RoundedCorners(100))
+                            .placeholder(new ColorDrawable(Color.BLACK))
+                            .transition(DrawableTransitionOptions.withCrossFade())
+                            .into(confirmImage);
+                    confirmAnimalName.setText(confirm_animalName);
+                    confirmAnimalType.setText(confirm_animalType);
 
-                bottomSheetDialog.show();
+                    bottomSheetDialog.show();
+                }else{
+                    Toast.makeText(getApplicationContext(), animal.getComm_name()+"has selected",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.R;
 import com.example.easytrail.model.AnimalResult;
+import com.google.android.material.card.MaterialCardView;
 
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
         TextView animalName_tv;
         TextView animalHabitat_tv;
         ImageView animalImage_iv;
+        MaterialCardView materialCardView;
 //        KenBurnsView kenBurnsView;
 
         public ViewHolder(View itemView){
@@ -35,6 +38,7 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
             animalName_tv = itemView.findViewById(R.id.animal_name_tv);
             animalHabitat_tv = itemView.findViewById(R.id.animal_habitat_tv);
             animalImage_iv = itemView.findViewById(R.id.kbvAnimalImage);
+            materialCardView = itemView.findViewById(R.id.animalContainer_cardView);
         }
     }
 
@@ -58,6 +62,8 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
         TextView tvAnimalName = viewHolder.animalName_tv;
         TextView tvAnimalHabitat = viewHolder.animalHabitat_tv;
         ImageView ivAnimalImage = viewHolder.animalImage_iv;
+        MaterialCardView cardView = viewHolder.materialCardView;
+
 
         tvAnimalDistribution.setText(animal.getAbundance());
         tvAnimalName.setText(animal.getComm_name());
@@ -74,6 +80,7 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(viewHolder.itemView, position);
 
+
                 }
 
             });
@@ -81,11 +88,28 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
                 @Override
                 public boolean onLongClick(View v) {
                     onItemClickListener.onItemLongClick(viewHolder.itemView, position);
+//                    if(viewHolder.materialCardView.isChecked()){
+//                    Toast.makeText(context,"clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+//                }else{
+//                        viewHolder.materialCardView.setChecked(true);
+//                    }
+
 
                     return true;
                 }
             });
         }
+//        viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                if(viewHolder.materialCardView.isChecked()){
+//                    Toast.makeText(context,"clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+//                }
+//                viewHolder.materialCardView.setChecked(true);
+//
+//            }
+//        });
+
 
     }
 
@@ -110,5 +134,8 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
     public void setOnItemClickListener(OnItemClickListener listener){
         this.onItemClickListener = (OnItemClickListener) listener;
     }
+
+
+
 
 }

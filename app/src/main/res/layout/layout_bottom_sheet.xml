@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="1dp">
+        android:padding="12dp">
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -78,24 +78,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="1dp"
+            android:layout_margin="12dp"
             android:text="NOT YET"
             android:textAllCaps="false"
-            app:icon="@drawable/ic_not_interested"
-            app:cornerRadius="20dp"/>
+            app:elevation="12dp"
+            android:padding="12dp"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmation_spotted"
             android:theme="@style/AppTheme.NoActionBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="1dp"
+            android:layout_margin="12dp"
+            android:padding="12dp"
             android:text="SPOTTED"
             android:textAllCaps="false"
-            app:icon="@drawable/ic_pets"
-            app:cornerRadius="20dp"/>
+            app:elevation="12dp"/>
 
 
     </LinearLayout>

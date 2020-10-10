@@ -36,6 +36,7 @@ import com.example.easytrail.networkconnection.NetworkConnection;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.snackbar.Snackbar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONArray;
@@ -115,7 +116,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 AnimalResult animal = animals.get(position);
-                Toast.makeText(getApplicationContext(), "clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(view,"clicked " + animal.getComm_name(), Snackbar.LENGTH_LONG);
+                snackbar.show();
 
             }
 
@@ -124,9 +127,6 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                 MaterialCardView materialCardView = view.findViewById(R.id.animalContainer_cardView);
                 AnimalResult animal = animals.get(position);
                 if (!materialCardView.isChecked()){
-                    materialCardView.setChecked(true);
-                    materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#99C0C0C0")));
-                    materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#CC000000")));
 //                    materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#000000")));
 
 
@@ -158,6 +158,36 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                             .into(confirmImage);
                     confirmAnimalName.setText(confirm_animalName);
                     confirmAnimalType.setText(confirm_animalType);
+
+                    confirmNot_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
+
+                    confirmSpotted_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            materialCardView.setChecked(true);
+//                            materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#99C0C0C0")));
+                            materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#CCC0C0C0")));
+                            materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#CC000000")));
+                            bottomSheetDialog.dismiss();
+                            Snackbar snackbar = Snackbar.make(view,animal.getComm_name() + " has been marked", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    materialCardView.setChecked(false);
+                                    materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.TRANSPARENT));
+                                    materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#33000000")));
+                                    Snackbar snackbar1 = Snackbar.make(view,animal.getComm_name() + " has been unmarked",Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+                                }
+                            });
+                            snackbar.show();
+
+                        }
+                    });
 
                     bottomSheetDialog.show();
                 }else{

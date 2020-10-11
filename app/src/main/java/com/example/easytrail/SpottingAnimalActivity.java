@@ -27,8 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.easytrail.adapter.AnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.model.TrailResult;
@@ -45,6 +47,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.CropTransformation;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class SpottingAnimalActivity extends AppCompatActivity {
 
@@ -149,12 +154,15 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
                     confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
-                    Glide.with(getApplicationContext())
+                    Glide.with(getApplicationContext()).asBitmap()
                             .load(confirm_animalImage)//searchResults.get(position).getImageUrl())
-                            .centerCrop()
-                            .transform(new RoundedCorners(100))
+//                            .asBitmap()
+//                            .centerCrop()
+//                            .transform(new RoundedCorners(100))
+//                            .apply(RequestOptions.bitmapTransform(new RoundedCornersTransformation(50, 0, RoundedCornersTransformation.CornerType.ALL)))
                             .placeholder(new ColorDrawable(Color.BLACK))
-                            .transition(DrawableTransitionOptions.withCrossFade())
+//                            .transition(DrawableTransitionOptions.withCrossFade())
+                            .transition(BitmapTransitionOptions.withCrossFade(200))
                             .into(confirmImage);
                     confirmAnimalName.setText(confirm_animalName);
                     confirmAnimalType.setText(confirm_animalType);

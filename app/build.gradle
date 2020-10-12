@@ -58,4 +58,13 @@ dependencies {
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 
+    //ViewModel and LivaData
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.0-beta01'
+
+    //Room
+    implementation 'androidx.room:room-runtime:2.3.0-alpha02'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0-alpha02'
+
+
 }

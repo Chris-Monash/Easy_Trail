@@ -3,9 +3,7 @@ package com.example.easytrail;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -19,8 +17,6 @@ import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,11 +26,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.easytrail.adapter.AnimalRecyclerViewAdapter;
+import com.example.easytrail.database.LocalAnimalDatabase;
+import com.example.easytrail.entity.History;
+import com.example.easytrail.entity.LocalAnimal;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.model.TrailResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.example.easytrail.viewmodel.HistoryViewModel;
+import com.example.easytrail.viewmodel.LocalAnimalViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -45,11 +45,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import jp.wasabeef.glide.transformations.CropTransformation;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class SpottingAnimalActivity extends AppCompatActivity {
 
@@ -65,14 +64,20 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     RoundedImageView confirmImage;
     TextView confirmAnimalName;
     TextView confirmAnimalType;
+    TextView spottingScore_tv;
     MaterialButton confirmSpotted_btn;
     MaterialButton confirmNot_btn;
-    MaterialCardView materialCardView;
+    LocalAnimalDatabase db = null;
+    HistoryViewModel historyViewModel;
+    LocalAnimalViewModel localAnimalViewModel;
+    private History history;
+    private LocalAnimal localAnimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotting_animal);
+        db = LocalAnimalDatabase.getInstance(this);
         toolbar = findViewById(R.id.spottingAnimal_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
@@ -81,6 +86,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         trail_id = Integer.toString(trail.getTrail_id());
         trail_name = trail.getTrail_name();
         networkConnection = new NetworkConnection();
+        spottingScore_tv = findViewById(R.id.spottingScore_tv);
         progressBar = findViewById(R.id.spottingAnimal_progressbar);
         viewPager2 = findViewById(R.id.spottingAnimalViewPager);
         animal_trailName_tv = findViewById(R.id.spottingAnimal_trailName_tv);
@@ -106,6 +112,24 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         viewPager2.setPageTransformer(compositePageTransformer);
         GetAllAnimalsForTrail getAllAnimalsForTrail = new GetAllAnimalsForTrail();
         getAllAnimalsForTrail.execute(trail_id);
+        GetLatestHis getLatestOne = new GetLatestHis();
+        getLatestOne.execute();
+        // get the latest history data
+
+//        localAnimalViewModel = new ViewModelProvider(this).get(LocalAnimalViewModel.class);
+//        localAnimalViewModel.initializeVars(getApplication());
+//        historyViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
+//        historyViewModel.initializeVars(getApplication());
+//        History temp = historyViewModel.getNewestOne();
+//        spottingScore_tv.setText(Integer.toString(historyViewModel.getNewestOne().getCurrent_score()));
+//        historyViewModel.getHistoryLiveData().observe(this, new Observer<History>() {
+//            @Override
+//            public void onChanged(@Nullable final History history) {
+//
+//
+//                spottingScore_tv.setText(Integer.toString(history.getCurrent_score()));
+//            }
+//        });
 
 //        materialCardView = findViewById(R.id.animalContainer_cardView);
 //        materialCardView.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +163,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     String confirm_animalName = animal.getComm_name();
                     String confirm_animalType = animal.getAnimal_type();
                     String confirm_animalImage = animal.getAnimal_image();
+                    int confirm_score = animal.getAnimal_score();
 //                GetConfirmInfo getConfirmInfo = new GetConfirmInfo();
 //                getConfirmInfo.execute(confirm_animalName,confirm_animalType,confirm_animalImage);
 //                AnimalResult animal = animals.get(position);
@@ -154,15 +179,15 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
                     confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
-                    Glide.with(getApplicationContext()).asBitmap()
+                    Glide.with(getApplicationContext())
                             .load(confirm_animalImage)//searchResults.get(position).getImageUrl())
 //                            .asBitmap()
-//                            .centerCrop()
-//                            .transform(new RoundedCorners(100))
+                            .centerCrop()
+                            .transform(new RoundedCorners(50))
 //                            .apply(RequestOptions.bitmapTransform(new RoundedCornersTransformation(50, 0, RoundedCornersTransformation.CornerType.ALL)))
                             .placeholder(new ColorDrawable(Color.BLACK))
 //                            .transition(DrawableTransitionOptions.withCrossFade())
-                            .transition(BitmapTransitionOptions.withCrossFade(200))
+                            .transition(DrawableTransitionOptions.withCrossFade(200))
                             .into(confirmImage);
                     confirmAnimalName.setText(confirm_animalName);
                     confirmAnimalType.setText(confirm_animalType);
@@ -182,12 +207,34 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                             materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.parseColor("#CCC0C0C0")));
                             materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#CC000000")));
                             bottomSheetDialog.dismiss();
+
+                            Date date = new Date();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String dateNowStr = sdf.format(date);
+                            AddAnimal addAnimal = new AddAnimal();
+                            addAnimal.execute(confirm_animalName,dateNowStr,Integer.toString(confirm_score), Integer.toString(history.getHistory_id()));
+                            UpdateHis updateHis = new UpdateHis();
+                            updateHis.execute(history.getHistory_id(),history.getCurrent_score()+confirm_score);
+
+
+
+//                            int latest_score = confirm_score + historyViewModel.getNewestOne().getCurrent_score();
+//                            historyViewModel.updateScore(historyViewModel.getNewestOne().getHistory_id(),latest_score);
+//                            spottingScore_tv.setText(Integer.toString(historyViewModel.getNewestOne().getCurrent_score()));
+//                            localAnimalViewModel.insert(new LocalAnimal(confirm_animalName,historyViewModel.getNewestOne().getHistory_id()));
                             Snackbar snackbar = Snackbar.make(view,animal.getComm_name() + " has been marked", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     materialCardView.setChecked(false);
                                     materialCardView.setCardForegroundColor(ColorStateList.valueOf(Color.TRANSPARENT));
                                     materialCardView.setRippleColor(ColorStateList.valueOf(Color.parseColor("#33000000")));
+                                    GetLatestAni getLatestAni = new GetLatestAni();
+                                    getLatestAni.execute();
+//                                    int modifiedScore = historyViewModel.getNewestOne().getCurrent_score() - confirm_score;
+//                                    historyViewModel.updateScore(historyViewModel.getNewestOne().getHistory_id(), modifiedScore);
+//                                    spottingScore_tv.setText(Integer.toString(historyViewModel.getNewestOne().getCurrent_score()));
+//                                    localAnimalViewModel.deleteByIDs(historyViewModel.getNewestOne().getHistory_id(),localAnimalViewModel.findLatestOne().getLocalAnimal_id());
+
                                     Snackbar snackbar1 = Snackbar.make(view,animal.getComm_name() + " has been unmarked",Snackbar.LENGTH_SHORT);
                                     snackbar1.show();
                                 }
@@ -288,6 +335,69 @@ public class SpottingAnimalActivity extends AppCompatActivity {
 //            bottomSheetDialog.show();
 //        }
 //    }
+
+    private class GetLatestHis extends AsyncTask<Void,Void,History>{
+        @Override
+        protected History doInBackground(Void... voids) {
+            return history = db.historyDAO().getNewestOne();
+        }
+
+        @Override
+        protected void onPostExecute(History history) {
+            spottingScore_tv.setText(String.valueOf(history.getCurrent_score()));
+        }
+    }
+
+    private class AddAnimal extends AsyncTask<String,Void,Void>{
+        @Override
+        protected Void doInBackground(String... strings) {
+            db.localAnimalDAO().insert(new LocalAnimal(strings[0],strings[1],Integer.parseInt(strings[2]),Integer.parseInt(strings[3])));
+            return null;
+        }
+
+    }
+
+    private class UpdateHis extends AsyncTask<Integer,Void,Void>{
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            db.historyDAO().updateScores(integers[0],integers[1]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            GetLatestHis getLatestOne = new GetLatestHis();
+            getLatestOne.execute();
+        }
+    }
+
+    private class GetLatestAni extends AsyncTask<Void,Void,LocalAnimal>{
+        @Override
+        protected LocalAnimal doInBackground(Void... voids) {
+            return localAnimal = db.localAnimalDAO().findLatestOne();
+        }
+
+        @Override
+        protected void onPostExecute(LocalAnimal localAnimal) {
+
+            DeleteAni deleteAni = new DeleteAni();
+            deleteAni.execute(localAnimal);
+        }
+    }
+
+    private class DeleteAni extends AsyncTask<LocalAnimal,Void,Integer>{
+        @Override
+        protected Integer doInBackground(LocalAnimal... localAnimals) {
+            db.localAnimalDAO().delete(localAnimals[0]);
+            return localAnimals[0].getLocalAnimal_score();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            UpdateHis updateHis = new UpdateHis();
+            updateHis.execute(history.getHistory_id(),history.getCurrent_score()-integer);
+        }
+    }
 
 
     private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score){

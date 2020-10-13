@@ -1,5 +1,6 @@
 package com.example.easytrail.ui.trail;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -81,7 +82,7 @@ public class TrailFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("trail",trail);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 //                Toast.makeText(getContext(), "clicked " + trail.getTrail_name(),Toast.LENGTH_LONG).show();
 //                Intent intent = new Intent(getActivity(), AnimalDetail.class);
 //                intent.putExtra("animal_guid", animal.guid());

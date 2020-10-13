@@ -20,7 +20,7 @@
         <activity
             android:name=".TrailDetailActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.Collapsing">
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity

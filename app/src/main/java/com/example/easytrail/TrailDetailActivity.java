@@ -10,7 +10,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,12 +62,16 @@ public class TrailDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Explode());
+        getWindow().setExitTransition(new Explode());
         setContentView(R.layout.activity_trail_detail);
         db = LocalAnimalDatabase.getInstance(this);
         toolbar = findViewById(R.id.trail_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 
         trailImage_iv = findViewById(R.id.expandedImage);
         trailName_tv = findViewById(R.id.scrolling_trail_name_tv);
@@ -137,6 +146,7 @@ public class TrailDetailActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private class InsertHis extends AsyncTask<History,Void,Void>{
@@ -154,5 +164,17 @@ public class TrailDetailActivity extends AppCompatActivity {
             intent.putExtras(trailBundle);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

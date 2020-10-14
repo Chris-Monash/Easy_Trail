@@ -4,19 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.transition.Explode;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -76,7 +84,11 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Explode());
+        getWindow().setExitTransition(new Explode());
         setContentView(R.layout.activity_spotting_animal);
+        StatusBar.setActivityAdapter(this,true);
         db = LocalAnimalDatabase.getInstance(this);
         toolbar = findViewById(R.id.spottingAnimal_toolbar);
         setSupportActionBar(toolbar);
@@ -144,11 +156,27 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new AnimalRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                AnimalResult animal = animals.get(position);
+                final AnimalResult animal = animals.get(position);
 //                Toast.makeText(getApplicationContext(), "clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
-                Snackbar snackbar = Snackbar.make(view,"clicked " + animal.getComm_name(), Snackbar.LENGTH_LONG);
-                snackbar.show();
+//                Snackbar snackbar = Snackbar.make(view,"clicked " + animal.getComm_name(), Snackbar.LENGTH_LONG);
+//                snackbar.show();
+                final Intent intent = new Intent(SpottingAnimalActivity.this, AnimalDetailActivity.class);
+                Bundle animalBundle = new Bundle();
+                animalBundle.putParcelable("animal",animal);
+                intent.putExtras(animalBundle);
+                final View imageView = view.findViewById(R.id.kbvAnimalImage);
+                final View name = view.findViewById(R.id.animal_name_tv);
+                final View habitat = view.findViewById(R.id.animal_habitat_tv);
+                ViewCompat.setTransitionName(imageView, animal.getAnimal_image());
+                ViewCompat.setTransitionName(name,animal.getComm_name());
+                ViewCompat.setTransitionName(habitat,animal.getAnimal_habitat() + animal.getComm_name());
+                String nameTest = ViewCompat.getTransitionName(name);
+                final Pair<View,String> p1 = Pair.create(name,ViewCompat.getTransitionName(name));
+                final Pair<View,String> p2 = Pair.create(imageView,ViewCompat.getTransitionName(imageView));
+                final Pair<View,String> p3 = Pair.create(habitat,ViewCompat.getTransitionName(habitat));
 
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SpottingAnimalActivity.this,p1,p2,p3);
+                startActivity(intent,options.toBundle());
             }
 
             @Override
@@ -404,5 +432,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         AnimalResult animalResult = new AnimalResult(animal_id, comm_name, sci_name, animal_type, animal_size, animal_diet, animal_location, conservation_status, regional_distribution, abundance, vic_conservation_status, act, animal_image, animal_habitat, animal_score);
         animals.add(animalResult);
         adapter.addAnimals(animals);
+    }
+    @Override
+    public void onBackPressed() {
+        ActivityCompat.finishAfterTransition(this);
     }
 }

@@ -3,4 +3,6 @@
     <string name="title_trail">Trail</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="transition_animal_image">animalImage</string>
+    <string name="transition_name">transition_name</string>
 </resources>

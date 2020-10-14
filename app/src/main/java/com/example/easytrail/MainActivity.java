@@ -1,11 +1,16 @@
 package com.example.easytrail;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
 
 import com.example.easytrail.ui.dashboard.DashboardFragment;
@@ -31,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
         setContentView(R.layout.activity_main);
+        StatusBar.setActivityAdapter(this,true);
+//        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+//            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+//        }
+//        if (Build.VERSION.SDK_INT >= 19) {
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//        }
+//
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Easy Trail");
@@ -84,7 +101,28 @@ public class MainActivity extends AppCompatActivity {
 //        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 //        NavigationUI.setupWithNavController(navView, navController);
-    });
+
+
+        });
+
+
     }
+//    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
+//        Window win = activity.getWindow();
+//        WindowManager.LayoutParams winParams = win.getAttributes();
+//        if (on) {
+//            winParams.flags |= bits;
+//        } else {
+//            winParams.flags &= ~bits;
+//        }
+//        win.setAttributes(winParams);
+//    }
+//        private void showCustomUI() {
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(
+//            View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//}
+
+
 
 }

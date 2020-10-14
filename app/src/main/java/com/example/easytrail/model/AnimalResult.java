@@ -1,6 +1,9 @@
 package com.example.easytrail.model;
 
-public class AnimalResult {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class AnimalResult implements Parcelable {
     private int animal_id;
     private String comm_name;
     private String sci_name;
@@ -16,6 +19,24 @@ public class AnimalResult {
     private String animal_image;
     private String animal_habitat;
     private int animal_score;
+
+    public AnimalResult(Parcel in){
+        this.animal_id = in.readInt();
+        this.comm_name = in.readString();
+        this.sci_name = in.readString();
+        this.animal_type = in.readString();
+        this.animal_size = in.readString();
+        this.animal_diet = in.readString();
+        this.animal_location = in.readString();
+        this.conservation_status = in.readString();
+        this.regional_distribution = in.readString();
+        this.abundance = in.readString();
+        this.vic_conservation_status = in.readString();
+        this.act = in.readString();
+        this.animal_image = in.readString();
+        this.animal_habitat = in.readString();
+        this.animal_score = in.readInt();
+    }
 
     public AnimalResult(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score) {
         this.animal_id = animal_id;
@@ -34,6 +55,45 @@ public class AnimalResult {
         this.animal_habitat = animal_habitat;
         this.animal_score = animal_score;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(animal_id);
+        dest.writeString(comm_name);
+        dest.writeString(sci_name);
+        dest.writeString(animal_type);
+        dest.writeString(animal_size);
+        dest.writeString(animal_diet);
+        dest.writeString(animal_location);
+        dest.writeString(conservation_status);
+        dest.writeString(regional_distribution);
+        dest.writeString(abundance);
+        dest.writeString(vic_conservation_status);
+        dest.writeString(act);
+        dest.writeString(animal_image);
+        dest.writeString(animal_habitat);
+        dest.writeInt(animal_score);
+
+
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<AnimalResult> CREATOR = new Creator<AnimalResult>() {
+        @Override
+        public AnimalResult createFromParcel(Parcel source) {
+            return new AnimalResult(source);
+        }
+
+        @Override
+        public AnimalResult[] newArray(int size) {
+            return new AnimalResult[size];
+        }
+    };
 
     public int getAnimal_id() {
         return animal_id;

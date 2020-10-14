@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -73,6 +74,10 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
                 .placeholder(new ColorDrawable(Color.BLACK))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivAnimalImage);
+//        ViewCompat.setTransitionName(ivAnimalImage, animal.getAnimal_image());
+//        ViewCompat.setTransitionName(tvAnimalName,animal.getComm_name());
+
+
         //item click
         if (onItemClickListener != null){
             viewHolder.itemView.setOnClickListener(new View.OnClickListener(){

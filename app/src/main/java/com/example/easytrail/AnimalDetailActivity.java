@@ -1,23 +1,18 @@
 package com.example.easytrail;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.ViewCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -27,9 +22,6 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.easytrail.model.AnimalResult;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-
-import static com.example.easytrail.R.color.colorPrimary;
-import static com.example.easytrail.R.color.white;
 
 
 public class AnimalDetailActivity extends AppCompatActivity {
@@ -52,7 +44,8 @@ public class AnimalDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_animal_detail);
-        StatusBar.setActivityAdapter(this,true);
+        postponeEnterTransition();
+        StatusBar.setActivityAdapter(this,false);
         toolbar = findViewById(R.id.animal_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,7 +76,7 @@ public class AnimalDetailActivity extends AppCompatActivity {
         ViewCompat.setTransitionName(animal_name_tv, animalResult.getComm_name());
         ViewCompat.setTransitionName(animal_habitat_tv, animalResult.getAnimal_habitat()+animalResult.getComm_name());
         String nameTest = ViewCompat.getTransitionName(animal_name_tv);
-        postponeEnterTransition();
+
         Glide.with(this)
                 .load(animal_image_url)//searchResults.get(position).getImageUrl())
                 .placeholder(new ColorDrawable(Color.BLACK))

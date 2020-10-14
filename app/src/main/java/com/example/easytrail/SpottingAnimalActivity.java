@@ -1,17 +1,5 @@
 package com.example.easytrail;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -19,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.transition.Explode;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -30,8 +17,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.adapter.AnimalRecyclerViewAdapter;
@@ -75,6 +71,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     TextView spottingScore_tv;
     MaterialButton confirmSpotted_btn;
     MaterialButton confirmNot_btn;
+    MaterialButton endTrail_btn;
     LocalAnimalDatabase db = null;
     HistoryViewModel historyViewModel;
     LocalAnimalViewModel localAnimalViewModel;
@@ -102,6 +99,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.spottingAnimal_progressbar);
         viewPager2 = findViewById(R.id.spottingAnimalViewPager);
         animal_trailName_tv = findViewById(R.id.spottingAnimal_trailName_tv);
+        endTrail_btn = findViewById(R.id.spottingAnimal_endTrail);
         animal_trailName_tv.setText(trail_name);
         animals = new ArrayList<AnimalResult>();
         adapter = new AnimalRecyclerViewAdapter(getApplicationContext(),animals);
@@ -240,7 +238,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             String dateNowStr = sdf.format(date);
                             AddAnimal addAnimal = new AddAnimal();
-                            addAnimal.execute(confirm_animalName,dateNowStr,Integer.toString(confirm_score), Integer.toString(history.getHistory_id()));
+                            addAnimal.execute(confirm_animalName,dateNowStr,Integer.toString(confirm_score), Integer.toString(history.getHistory_id()), history.getCreated_date());
                             UpdateHis updateHis = new UpdateHis();
                             updateHis.execute(history.getHistory_id(),history.getCurrent_score()+confirm_score);
 
@@ -281,7 +279,13 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         });
 
 
-
+        endTrail_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SpottingAnimalActivity.this,EndTrailActivity.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SpottingAnimalActivity.this).toBundle());
+            }
+        });
 
     }
 
@@ -379,7 +383,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     private class AddAnimal extends AsyncTask<String,Void,Void>{
         @Override
         protected Void doInBackground(String... strings) {
-            db.localAnimalDAO().insert(new LocalAnimal(strings[0],strings[1],Integer.parseInt(strings[2]),Integer.parseInt(strings[3])));
+            db.localAnimalDAO().insert(new LocalAnimal(strings[0],strings[1],Integer.parseInt(strings[2]),Integer.parseInt(strings[3]), strings[4]));
             return null;
         }
 

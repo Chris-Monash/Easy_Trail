@@ -11,8 +11,6 @@ import com.example.easytrail.entity.LocalAnimal;
 
 import java.util.List;
 
-import static androidx.room.OnConflictStrategy.REPLACE;
-
 @Dao
 public interface LocalAnimalDAO {
     @Query("SELECT * FROM localanimal")
@@ -39,14 +37,15 @@ public interface LocalAnimalDAO {
     @Query("UPDATE localanimal SET localAnimal_name = :localAnimal_name WHERE localAnimal_id = :localAnimal_id")
     void updateByID(int localAnimal_id, String localAnimal_name);
 
-    @Query("SELECT * FROM localanimal WHERE fk_history_id = :fk_history_id")
-    List<LocalAnimal> findAnimalForHistory(int fk_history_id);
+    @Query("SELECT * FROM localanimal WHERE fk_history_id = :fk_history_id AND fk_history_created_date = :fk_history_created_date")
+    List<LocalAnimal> findAnimalForHistory(int fk_history_id, String fk_history_created_date);
 
     @Query("DELETE FROM localanimal WHERE fk_history_id = :fk_history_id AND localAnimal_id = :localAnimal_id")
     void deleteByIDs(int fk_history_id, int localAnimal_id);
 
     @Query("SELECT * FROM localanimal ORDER BY created_date DESC LIMIT 1")
     LocalAnimal findLatestOne();
+
 
 
 

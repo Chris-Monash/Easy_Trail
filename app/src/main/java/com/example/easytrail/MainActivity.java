@@ -1,27 +1,19 @@
 package com.example.easytrail;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-
-
-import com.example.easytrail.ui.dashboard.DashboardFragment;
-import com.example.easytrail.ui.trail.TrailFragment;
-import com.example.easytrail.ui.notifications.NotificationsFragment;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.easytrail.ui.dashboard.DashboardFragment;
+import com.example.easytrail.ui.notifications.NotificationsFragment;
+import com.example.easytrail.ui.trail.TrailFragment;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -50,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Easy Trail");
         getSupportActionBar().hide();
         bottomNav = findViewById(R.id.nav_view);
         if (savedInstanceState == null){

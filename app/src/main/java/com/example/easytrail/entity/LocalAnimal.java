@@ -21,14 +21,20 @@ public class LocalAnimal {
     @ColumnInfo(name = "localAnimal_score")
     public int localAnimal_score;
 
+    @ColumnInfo(name = "fk_history_created_date")
+    public String fk_history_created_date;
+
     @ForeignKey(entity = History.class, parentColumns = "history_id", childColumns = "fk_history_id",onDelete = CASCADE, onUpdate = CASCADE)
     public int fk_history_id;
 
-    public LocalAnimal(String localAnimal_name, String created_date, int localAnimal_score, int fk_history_id) {
+    @ForeignKey(entity = History.class,parentColumns = "created_date", childColumns = "fk_history_created_date",onDelete = CASCADE, onUpdate = CASCADE)
+
+    public LocalAnimal(String localAnimal_name, String created_date, int localAnimal_score, int fk_history_id, String fk_history_created_date) {
         this.localAnimal_name = localAnimal_name;
         this.created_date = created_date;
         this.localAnimal_score = localAnimal_score;
         this.fk_history_id = fk_history_id;
+        this.fk_history_created_date = fk_history_created_date;
     }
 
     public int getLocalAnimal_id() {
@@ -69,5 +75,13 @@ public class LocalAnimal {
 
     public void setLocalAnimal_score(int localAnimal_score) {
         this.localAnimal_score = localAnimal_score;
+    }
+
+    public String getFk_history_created_date() {
+        return fk_history_created_date;
+    }
+
+    public void setFk_history_created_date(String fk_history_created_date) {
+        this.fk_history_created_date = fk_history_created_date;
     }
 }

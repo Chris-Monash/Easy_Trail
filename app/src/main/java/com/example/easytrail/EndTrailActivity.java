@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Explode;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +64,13 @@ public class EndTrailActivity extends AppCompatActivity {
         db = LocalAnimalDatabase.getInstance(this);
         GetLatestTrail getLatestTrail = new GetLatestTrail();
         getLatestTrail.execute();
+        animalInfo_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EndTrailActivity.this, AnimalInfoActivity.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(EndTrailActivity.this).toBundle());
+            }
+        });
 
 
     }

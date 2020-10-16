@@ -84,8 +84,8 @@ public class SpottingAnimalActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
-        setContentView(R.layout.activity_spotting_animal);
         StatusBar.setActivityAdapter(this,true);
+        setContentView(R.layout.activity_spotting_animal);
         db = LocalAnimalDatabase.getInstance(this);
         toolbar = findViewById(R.id.spottingAnimal_toolbar);
         setSupportActionBar(toolbar);
@@ -190,6 +190,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     String confirm_animalType = animal.getAnimal_type();
                     String confirm_animalImage = animal.getAnimal_image();
                     int confirm_score = animal.getAnimal_score();
+                    String confirm_abundance = animal.getAbundance();
+                    String confirm_conservation = animal.getConservation_status();
+                    String confirm_habitat = animal.getAnimal_habitat();
 //                GetConfirmInfo getConfirmInfo = new GetConfirmInfo();
 //                getConfirmInfo.execute(confirm_animalName,confirm_animalType,confirm_animalImage);
 //                AnimalResult animal = animals.get(position);
@@ -238,7 +241,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             String dateNowStr = sdf.format(date);
                             AddAnimal addAnimal = new AddAnimal();
-                            addAnimal.execute(confirm_animalName,dateNowStr,Integer.toString(confirm_score), Integer.toString(history.getHistory_id()), history.getCreated_date());
+                            addAnimal.execute(confirm_animalName,dateNowStr,Integer.toString(confirm_score), confirm_abundance, confirm_conservation, confirm_habitat, confirm_animalImage,Integer.toString(history.getHistory_id()), history.getCreated_date());
                             UpdateHis updateHis = new UpdateHis();
                             updateHis.execute(history.getHistory_id(),history.getCurrent_score()+confirm_score);
 
@@ -383,7 +386,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     private class AddAnimal extends AsyncTask<String,Void,Void>{
         @Override
         protected Void doInBackground(String... strings) {
-            db.localAnimalDAO().insert(new LocalAnimal(strings[0],strings[1],Integer.parseInt(strings[2]),Integer.parseInt(strings[3]), strings[4]));
+            db.localAnimalDAO().insert(new LocalAnimal(strings[0],strings[1],Integer.parseInt(strings[2]),strings[3], strings[4],strings[5], strings[6], Integer.parseInt(strings[7]),strings[8]));
             return null;
         }
 

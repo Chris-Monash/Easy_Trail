@@ -11,9 +11,9 @@
         app:cnb_textColor="@color/textPrimary"/>
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard"
+        android:id="@+id/navigation_explore"
+        android:icon="@drawable/ic_explore"
+        android:title="@string/title_explore"
         app:cnb_backgroundColor="@color/colorDivider"
         app:cnb_iconColor="@color/textPrimary"
         app:cnb_textColor="@color/textPrimary"/>

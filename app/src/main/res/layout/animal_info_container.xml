@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".AnimalInfoActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="148dp"
+        app:cardCornerRadius="20dp"
+        app:elevation = "12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/animalInfo_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Card Image"
+                app:backgroundTint="@color/material_on_surface_emphasis_medium"
+                app:backgroundTintMode="add"
+
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/background"
+                />
+            <TextView
+                style="?attr/textAppearanceHeadline6"
+                android:id="@+id/animalInfo_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                tools:text="Animal Name"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/animalInfo_abundance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                tools:text="Animal abundance"
+                android:fontFamily="sans-serif"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    style="?attr/textAppearanceSearchResultSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Conservation status: "
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/animalInfo_conservation_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:text="Conservation status"
+                    android:textColor="@color/textPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    style="?attr/textAppearanceSearchResultSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Habitat: "
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/animalInfo_habitat_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:text="Conservation status"
+                    android:textColor="@color/textPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    style="?attr/textAppearanceSearchResultSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Score: "
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/animalInfo_score_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:text="Conservation status"
+                    android:textColor="@color/textPrimary"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

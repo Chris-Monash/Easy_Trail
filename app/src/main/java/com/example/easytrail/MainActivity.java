@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.easytrail.ui.dashboard.DashboardFragment;
+import com.example.easytrail.ui.explore.ExploreFragment;
 import com.example.easytrail.ui.notifications.NotificationsFragment;
 import com.example.easytrail.ui.trail.TrailFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -27,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
-        setContentView(R.layout.activity_main);
         StatusBar.setActivityAdapter(this,true);
+        setContentView(R.layout.activity_main);
+//        StatusBar.setActivityAdapter(this,false);
+
+
 //        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
 //            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
 //        }
@@ -62,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new TrailFragment();
 //                        toolbar.setTitle("Trail");
                         break;
-                    case R.id.navigation_dashboard:
-                        fragment = new DashboardFragment();
-//                        toolbar.setTitle("Dashboard");
+                    case R.id.navigation_explore:
+                        fragment = new ExploreFragment();
+//                        toolbar.setTitle("Explore");
                         break;
                     case R.id.navigation_notifications:
                         fragment = new NotificationsFragment();

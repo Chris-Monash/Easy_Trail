@@ -5,24 +5,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.easytrail.R;
+import com.example.easytrail.StatusBar;
 import com.example.easytrail.TrailDetailActivity;
 import com.example.easytrail.adapter.TrailRecyclerViewAdapter;
 import com.example.easytrail.model.TrailResult;
@@ -47,8 +42,9 @@ public class TrailFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        trailViewModel = ViewModelProviders.of(this).get(TrailViewModel.class);
         View root = inflater.inflate(R.layout.fragment_trail, container, false);
+
+        StatusBar.setFragmentAdapter(this, root, true);
 
         networkConnection = new NetworkConnection();
         progressBar = root.findViewById(R.id.progressbar);

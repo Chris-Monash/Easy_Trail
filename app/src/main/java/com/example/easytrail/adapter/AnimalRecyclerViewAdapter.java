@@ -70,7 +70,7 @@ public class AnimalRecyclerViewAdapter extends RecyclerView.Adapter<AnimalRecycl
                 ivAnimalDistribution.setImageResource(R.drawable.ic_level_1);
                 break;
 
-            case "Common " :
+            case "Common" :
                 ivAnimalDistribution.setImageResource(R.drawable.ic_level_2);
                 break;
 

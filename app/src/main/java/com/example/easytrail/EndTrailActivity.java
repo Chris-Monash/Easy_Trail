@@ -38,8 +38,19 @@ public class EndTrailActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
-        setContentView(R.layout.activity_end_trail);
+
+
+//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |View.SYSTEM_UI_FLAG_FULLSCREEN);
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
         StatusBar.setActivityAdapter(this,false);
+
+
+
+
+
+        setContentView(R.layout.activity_end_trail);
         toolbar = findViewById(R.id.endTrail_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();

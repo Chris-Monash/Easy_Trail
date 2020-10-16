@@ -1,11 +1,5 @@
 package com.example.easytrail.networkconnection;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
-
-import javax.net.ssl.HttpsURLConnection;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -38,6 +32,21 @@ public class NetworkConnection {
 
     public String getAnimalForTrail(String trail_id){
         final String methodPath =  "details/" + trail_id;
+        Request.Builder builder = new Request.Builder();
+        builder.url(Base_URL + methodPath);
+        Request request = builder.build();
+
+        try{
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getAllAnimals(){
+        final String methodPath =  "animals";
         Request.Builder builder = new Request.Builder();
         builder.url(Base_URL + methodPath);
         Request request = builder.build();

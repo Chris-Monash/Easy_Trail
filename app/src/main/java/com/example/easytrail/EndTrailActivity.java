@@ -21,6 +21,8 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
+import static android.view.View.GONE;
+
 public class EndTrailActivity extends AppCompatActivity {
     TextView animalCount_tv;
     TextView animalScore_tv;
@@ -72,6 +74,14 @@ public class EndTrailActivity extends AppCompatActivity {
             }
         });
 
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EndTrailActivity.this, MainActivity.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(EndTrailActivity.this).toBundle());
+            }
+        });
+
 
     }
 
@@ -103,6 +113,7 @@ public class EndTrailActivity extends AppCompatActivity {
             trailName_tv.setText(history.getTrail_name());
             if (localAnimals.size() == 0){
                 motivation_tv.setText("Oops! Seems like you missed animals. Good luck with your next trail");
+                animalInfo_btn.setVisibility(GONE);
             }
         }
     }

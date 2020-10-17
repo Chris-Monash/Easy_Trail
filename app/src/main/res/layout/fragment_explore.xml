@@ -9,19 +9,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/exploreAnimal_trailName_tv"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center_vertical"
-            android:textColor="#212121"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:text="Welcome"
-            android:layout_alignParentStart="true" />
+<!--        <TextView-->
+<!--            android:id="@+id/exploreAnimal_trailName_tv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:textColor="#212121"-->
+<!--            android:textSize="35sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="Welcome"-->
+<!--            android:layout_alignParentStart="true" />-->
         <!--    <androidx.cardview.widget.CardView-->
 <!--        <LinearLayout-->
 <!--            android:id="@+id/cardProfilePicture"-->
@@ -56,11 +56,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            android:text="Explore animals in Mornington Peninsula"
+            android:text="Explore animals"
             android:textColor="#212121"
             android:textSize="35sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/exploreAnimal_trailName_tv"/>
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv3"
@@ -77,8 +76,8 @@
             android:id="@+id/exploreAnimal_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_below="@+id/tv3">
             <ProgressBar
                 android:id="@+id/exploreAnimal_progressbar"

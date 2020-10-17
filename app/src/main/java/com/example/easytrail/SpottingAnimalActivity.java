@@ -65,9 +65,13 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     NetworkConnection networkConnection = null;
     Toolbar toolbar;
-    RoundedImageView confirmImage;
-    TextView confirmAnimalName;
-    TextView confirmAnimalType;
+    RoundedImageView confirmImage_iv;
+    TextView confirmAnimalName_tv;
+    TextView confirmAnimalType_tv;
+    TextView confirmScore_tv;
+    TextView confirmActive_tv;
+    TextView confirmInhabit_tv;
+    TextView confirmFind_tv;
     TextView spottingScore_tv;
     MaterialButton confirmSpotted_btn;
     MaterialButton confirmNot_btn;
@@ -193,6 +197,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     String confirm_abundance = animal.getAbundance();
                     String confirm_conservation = animal.getConservation_status();
                     String confirm_habitat = animal.getAnimal_habitat();
+                    String confirm_activeTime = animal.getActive_time();
+                    String confirm_inhabitArea = animal.getInhabit_area();
+                    String confirm_find = animal.getAnimal_location();
 //                GetConfirmInfo getConfirmInfo = new GetConfirmInfo();
 //                getConfirmInfo.execute(confirm_animalName,confirm_animalType,confirm_animalImage);
 //                AnimalResult animal = animals.get(position);
@@ -202,9 +209,13 @@ public class SpottingAnimalActivity extends AppCompatActivity {
 
                     bottomSheetDialog.setContentView(bottomSheetView);
 
-                    confirmImage = bottomSheetView.findViewById(R.id.confirmation_image);
-                    confirmAnimalName = bottomSheetView.findViewById(R.id.confirmation_animalName);
-                    confirmAnimalType = bottomSheetView.findViewById(R.id.confirmation_animalType);
+                    confirmImage_iv = bottomSheetView.findViewById(R.id.confirmation_image);
+                    confirmAnimalName_tv = bottomSheetView.findViewById(R.id.confirmation_animalName);
+                    confirmAnimalType_tv = bottomSheetView.findViewById(R.id.confirmation_animalType);
+                    confirmScore_tv = bottomSheetView.findViewById(R.id.confirmation_animalScore);
+                    confirmActive_tv = bottomSheetView.findViewById(R.id.confirmation_activeTime_tv);
+                    confirmInhabit_tv = bottomSheetView.findViewById(R.id.confirmation_inhabit_tv);
+                    confirmFind_tv = bottomSheetView.findViewById(R.id.confirmation_find_tv);
                     confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
                     confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
@@ -217,9 +228,14 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                             .placeholder(new ColorDrawable(Color.BLACK))
 //                            .transition(DrawableTransitionOptions.withCrossFade())
                             .transition(DrawableTransitionOptions.withCrossFade(200))
-                            .into(confirmImage);
-                    confirmAnimalName.setText(confirm_animalName);
-                    confirmAnimalType.setText(confirm_animalType);
+                            .into(confirmImage_iv);
+                    confirmAnimalName_tv.setText(confirm_animalName);
+                    confirmAnimalType_tv.setText(confirm_animalType);
+                    confirmScore_tv.setText(String.valueOf(confirm_score) + " points");
+                    confirmActive_tv.setText(confirm_activeTime);
+                    confirmInhabit_tv.setText(confirm_inhabitArea);
+                    confirmFind_tv.setText(confirm_find);
+
 
                     confirmNot_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -322,7 +338,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     String animal_image = animalObject.getString("animal_image");
                     String animal_habitat = animalObject.getString("animal_habitat");
                     int animal_score = animalObject.getInt("score");
-                    saveData(animal_id, comm_name, sci_name, animal_type, animal_size, animal_diet, animal_location, conservation_status, regional_distribution, abundance, vic_conservation_status, act, animal_image, animal_habitat, animal_score);
+                    String active_time = animalObject.getString("active_time");
+                    String inhabit_area = animalObject.getString("inhabit_area");
+                    saveData(animal_id, comm_name, sci_name, animal_type, animal_size, animal_diet, animal_location, conservation_status, regional_distribution, abundance, vic_conservation_status, act, animal_image, animal_habitat, animal_score, active_time, inhabit_area);
                 }
                 viewPager2.setAdapter(adapter);
                 viewPager2.setClipToPadding(false);
@@ -435,8 +453,8 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     }
 
 
-    private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score){
-        AnimalResult animalResult = new AnimalResult(animal_id, comm_name, sci_name, animal_type, animal_size, animal_diet, animal_location, conservation_status, regional_distribution, abundance, vic_conservation_status, act, animal_image, animal_habitat, animal_score);
+    private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score, String active_time, String inhabit_area){
+        AnimalResult animalResult = new AnimalResult(animal_id, comm_name, sci_name, animal_type, animal_size, animal_diet, animal_location, conservation_status, regional_distribution, abundance, vic_conservation_status, act, animal_image, animal_habitat, animal_score, active_time, inhabit_area);
         animals.add(animalResult);
         adapter.addAnimals(animals);
     }

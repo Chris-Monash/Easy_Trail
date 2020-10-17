@@ -103,7 +103,9 @@ public class ExploreFragment extends Fragment {
                     String animal_image = animalObject.getString("animal_image");
                     String animal_habitat = animalObject.getString("animal_habitat");
                     int animal_score = animalObject.getInt("score");
-                    saveData(animal_id,comm_name,sci_name,animal_type,size,diet,animal_location,conservation_status,regional_distribution,abundance,vic_conservation_status,act,animal_image,animal_habitat,animal_score);
+                    String active_time = animalObject.getString("active_time");
+                    String inhabit_area = animalObject.getString("inhabit_area");
+                    saveData(animal_id,comm_name,sci_name,animal_type,size,diet,animal_location,conservation_status,regional_distribution,abundance,vic_conservation_status,act,animal_image,animal_habitat,animal_score, active_time, inhabit_area);
 
                 }
                 viewPager2.setAdapter(adapter);
@@ -130,8 +132,8 @@ public class ExploreFragment extends Fragment {
         }
     }
 
-    private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score){
-        AnimalResult animalResult = new AnimalResult(animal_id,comm_name,sci_name,animal_type,animal_size,animal_diet,animal_location,conservation_status,regional_distribution,abundance,vic_conservation_status,act,animal_image,animal_habitat,animal_score);
+    private void saveData(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score, String active_time, String inhabit_area){
+        AnimalResult animalResult = new AnimalResult(animal_id,comm_name,sci_name,animal_type,animal_size,animal_diet,animal_location,conservation_status,regional_distribution,abundance,vic_conservation_status,act,animal_image,animal_habitat,animal_score, active_time, inhabit_area);
         animals.add(animalResult);
         adapter.addExploreAnimals(animals);
     }

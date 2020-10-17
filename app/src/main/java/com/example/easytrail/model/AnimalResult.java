@@ -19,6 +19,8 @@ public class AnimalResult implements Parcelable {
     private String animal_image;
     private String animal_habitat;
     private int animal_score;
+    private String active_time;
+    private String inhabit_area;
 
     public AnimalResult(Parcel in){
         this.animal_id = in.readInt();
@@ -36,9 +38,11 @@ public class AnimalResult implements Parcelable {
         this.animal_image = in.readString();
         this.animal_habitat = in.readString();
         this.animal_score = in.readInt();
+        this.active_time = in.readString();
+        this.inhabit_area= in.readString();
     }
 
-    public AnimalResult(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score) {
+    public AnimalResult(int animal_id, String comm_name, String sci_name, String animal_type, String animal_size, String animal_diet, String animal_location, String conservation_status, String regional_distribution, String abundance, String vic_conservation_status, String act, String animal_image, String animal_habitat, int animal_score, String active_time, String inhabit_area) {
         this.animal_id = animal_id;
         this.comm_name = comm_name;
         this.sci_name = sci_name;
@@ -54,6 +58,8 @@ public class AnimalResult implements Parcelable {
         this.animal_image = animal_image;
         this.animal_habitat = animal_habitat;
         this.animal_score = animal_score;
+        this.active_time = active_time;
+        this.inhabit_area = inhabit_area;
     }
 
     @Override
@@ -73,6 +79,8 @@ public class AnimalResult implements Parcelable {
         dest.writeString(animal_image);
         dest.writeString(animal_habitat);
         dest.writeInt(animal_score);
+        dest.writeString(active_time);
+        dest.writeString(inhabit_area);
 
 
 
@@ -213,5 +221,21 @@ public class AnimalResult implements Parcelable {
 
     public void setAnimal_score(int animal_score) {
         this.animal_score = animal_score;
+    }
+
+    public String getActive_time() {
+        return active_time;
+    }
+
+    public void setActive_time(String active_time) {
+        this.active_time = active_time;
+    }
+
+    public String getInhabit_area() {
+        return inhabit_area;
+    }
+
+    public void setInhabit_area(String inhabit_area) {
+        this.inhabit_area = inhabit_area;
     }
 }

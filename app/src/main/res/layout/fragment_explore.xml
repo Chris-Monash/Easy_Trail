@@ -9,6 +9,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
 <!--        <TextView-->
 <!--            android:id="@+id/exploreAnimal_trailName_tv"-->
 <!--            android:layout_width="match_parent"-->
@@ -77,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
             android:layout_below="@+id/tv3">
             <ProgressBar
                 android:id="@+id/exploreAnimal_progressbar"
@@ -89,11 +92,16 @@
                 android:id="@+id/exploreAnimalViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="60dp"
-                android:paddingEnd="60dp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
                 android:layout_alignParentBottom="true"
                 />
         </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
 
 
     </RelativeLayout>

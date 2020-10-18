@@ -31,12 +31,34 @@ public class AnimalDetailActivity extends AppCompatActivity {
     private String animal_sci_name;
     private String animal_class;
     private String animal_habitat;
+    private String animal_size;
+    private String animal_diet;
+    private String animal_conservation;
+    private String animal_regionalDistribution;
+    private String animal_abundance;
+    private String animal_vicConservationStatus;
+    private String animal_activeTime;
+    private String animal_inhabitArea;
+    private int animal_score;
+    private String animal_find;
+
     Toolbar toolbar;
     ImageView animal_image_iv;
     TextView animal_name_tv;
     TextView animal_sci_name_tv;
     TextView animal_class_tv;
     TextView animal_habitat_tv;
+    TextView animal_size_tv;
+    TextView animal_diet_tv;
+    TextView animal_conservation_tv;
+    TextView animal_regionalDistribution_tv;
+    TextView animal_abundance_tv;
+    TextView animal_vicConservationStatus_tv;
+    TextView animal_activeTime_tv;
+    TextView animal_inhabitArea_tv;
+    TextView animal_score_tv;
+    TextView animal_find_tv;
+
     CollapsingToolbarLayout coll_toolbar;
 
     @Override
@@ -57,6 +79,17 @@ public class AnimalDetailActivity extends AppCompatActivity {
         animal_sci_name_tv = findViewById(R.id.scrolling_animal_sci_name_tv);
         animal_class_tv = findViewById(R.id.scrolling_animal_class_tv);
         animal_habitat_tv = findViewById(R.id.scrolling_animal_habitat_tv);
+        animal_size_tv = findViewById(R.id.scrolling_animal_size_tv);
+        animal_diet_tv = findViewById(R.id.scrolling_animal_diet_tv);
+        animal_conservation_tv = findViewById(R.id.scrolling_animal_conservation_tv);
+        animal_regionalDistribution_tv = findViewById(R.id.scrolling_animal_regionalDistribution_tv);
+        animal_abundance_tv = findViewById(R.id.scrolling_animal_abundance_tv);
+        animal_vicConservationStatus_tv = findViewById(R.id.scrolling_animal_vicConservationStatus_tv);
+        animal_activeTime_tv = findViewById(R.id.scrolling_animal_activeTime_tv);
+        animal_inhabitArea_tv = findViewById(R.id.scrolling_animal_inhabitArea_tv);
+        animal_score_tv = findViewById(R.id.scrolling_animal_score_tv);
+        animal_find_tv = findViewById(R.id.scrolling_animal_find_tv);
+
 
         Bundle bundle = getIntent().getExtras();
         animalResult = bundle.getParcelable("animal");
@@ -65,12 +98,32 @@ public class AnimalDetailActivity extends AppCompatActivity {
         animal_sci_name = animalResult.getSci_name();
         animal_class = animalResult.getAnimal_type();
         animal_habitat = animalResult.getAnimal_habitat();
+        animal_size = animalResult.getAnimal_size();
+        animal_diet = animalResult.getAnimal_diet();
+        animal_conservation = animalResult.getConservation_status();
+        animal_regionalDistribution = animalResult.getRegional_distribution();
+        animal_abundance = animalResult.getAbundance();
+        animal_vicConservationStatus = animalResult.getVic_conservation_status();
+        animal_activeTime = animalResult.getActive_time();
+        animal_inhabitArea = animalResult.getInhabit_area();
+        animal_score = animalResult.getAnimal_score();
+        animal_find = animalResult.getAnimal_location();
 
 
         animal_name_tv.setText(animal_name);
         animal_sci_name_tv.setText(animal_sci_name);
         animal_class_tv.setText(animal_class);
         animal_habitat_tv.setText(animal_habitat);
+        animal_size_tv.setText(animal_size);
+        animal_diet_tv.setText(animal_diet);
+        animal_conservation_tv.setText(animal_conservation);
+        animal_regionalDistribution_tv.setText(animal_regionalDistribution);
+        animal_abundance_tv.setText(animal_abundance);
+        animal_vicConservationStatus_tv.setText(animal_vicConservationStatus);
+        animal_activeTime_tv.setText(animal_activeTime);
+        animal_inhabitArea_tv.setText(animal_inhabitArea);
+        animal_score_tv.setText(String.valueOf(animal_score));
+        animal_find_tv.setText(animal_find);
 
         ViewCompat.setTransitionName(animal_image_iv, animalResult.getAnimal_image());
         ViewCompat.setTransitionName(animal_name_tv, animalResult.getComm_name());

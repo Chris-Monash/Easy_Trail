@@ -3,6 +3,7 @@ package com.example.easytrail;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ProgressBar;
@@ -41,8 +42,11 @@ public class AnimalInfoActivity extends AppCompatActivity {
         StatusBar.setActivityAdapter(this,true);
         setContentView(R.layout.activity_animal_info);
         toolbar = findViewById(R.id.animalInfo_toolbar);
+        toolbar.setTitle("Animal Information");
         setSupportActionBar(toolbar);
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black);
         db = LocalAnimalDatabase.getInstance(this);
         progressBar = findViewById(R.id.animalInfo_progressbar);
         recyclerView = findViewById(R.id.animalInfo_recyclerView);
@@ -88,6 +92,17 @@ public class AnimalInfoActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(layoutManager);
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

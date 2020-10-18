@@ -14,7 +14,9 @@
     android:focusable="true"
     android:orientation="vertical"
     app:checkedIcon="@drawable/ic_checked"
-    app:checkedIconTint="@color/colorPrimary">
+    app:checkedIconTint="@color/colorPrimary"
+    app:checkedIconSize="30dp"
+    app:checkedIconMargin="20dp">
 
 
     <RelativeLayout

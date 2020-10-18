@@ -55,13 +55,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto_medium"
-                android:layout_marginStart="16dp"
                 android:layout_gravity="center_vertical"
                 android:textColor="#0A602E"
                 android:text="Scientific Name: "/>
@@ -69,7 +70,6 @@
                 android:id="@+id/scrolling_animal_sci_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
                 tools:text="xxx"
@@ -79,20 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto_medium"
-                android:layout_marginStart="16dp"
                 android:textColor="#0A602E"
                 android:text="Class: "/>
             <TextView
                 android:id="@+id/scrolling_animal_class_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/roboto"
                 tools:text="Reptile"
@@ -102,23 +102,264 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto_medium"
-                android:layout_marginStart="16dp"
                 android:textColor="#0A602E"
                 android:text="Habitat: "/>
             <TextView
                 android:id="@+id/scrolling_animal_habitat_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/roboto"
                 tools:text="Forest"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Size: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_size_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Diet: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_diet_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Conservation Status: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_conservation_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Regional Distribution: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_regionalDistribution_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Abundance: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_abundance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Victoria Conservation status: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_vicConservationStatus_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Active Period: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_activeTime_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Inhabiting Area: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_inhabitArea_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Score: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_score_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center_vertical"
+                android:textColor="#0A602E"
+                android:text="Where can find: "/>
+            <TextView
+                android:id="@+id/scrolling_animal_find_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
 <!--        <TextView-->

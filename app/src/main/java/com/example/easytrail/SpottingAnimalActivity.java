@@ -215,7 +215,6 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmScore_tv = bottomSheetView.findViewById(R.id.confirmation_animalScore);
                     confirmActive_tv = bottomSheetView.findViewById(R.id.confirmation_activeTime_tv);
                     confirmInhabit_tv = bottomSheetView.findViewById(R.id.confirmation_inhabit_tv);
-                    confirmFind_tv = bottomSheetView.findViewById(R.id.confirmation_find_tv);
                     confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
                     confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
@@ -234,7 +233,6 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmScore_tv.setText(String.valueOf(confirm_score) + " points");
                     confirmActive_tv.setText(confirm_activeTime);
                     confirmInhabit_tv.setText(confirm_inhabitArea);
-                    confirmFind_tv.setText(confirm_find);
 
 
                     confirmNot_btn.setOnClickListener(new View.OnClickListener() {

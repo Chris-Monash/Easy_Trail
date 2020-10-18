@@ -66,5 +66,9 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.3.0-alpha02'
     annotationProcessor 'androidx.room:room-compiler:2.3.0-alpha02'
 
+    //implement speed dial fab
+    implementation "com.leinardi.android:speed-dial:3.1.1"
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
 
 }

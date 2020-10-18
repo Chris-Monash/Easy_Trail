@@ -2,7 +2,7 @@
     <string name="app_name">Easy Trail</string>
     <string name="title_trail">Trail</string>
     <string name="title_explore">Explore</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_help">Help</string>
     <string name="transition_animal_image">animalImage</string>
     <string name="transition_name">transition_name</string>
 </resources>

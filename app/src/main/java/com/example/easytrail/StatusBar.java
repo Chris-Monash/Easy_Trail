@@ -27,9 +27,11 @@ public class StatusBar {
  android 6.0 set the status bar to dark colour
  */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (isSetLightStatusBar)
+                if (isSetLightStatusBar) {
                     activity.getWindow().getDecorView().setSystemUiVisibility(
                             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                }
+
             }
 
         }

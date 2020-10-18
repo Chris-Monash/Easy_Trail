@@ -14,6 +14,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
         android:textSize="15sp"
+        android:textColor="@color/text_icons"
         app:backgroundTint="@color/colorPrimaryDark"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

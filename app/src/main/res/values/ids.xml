@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fab_forest" type="id"/>
+    <item name="fab_wood" type="id"/>
+    <item name="fab_riparian" type="id"/>
+    <item name="fab_coastal" type="id"/>
+    <item name="fab_swamp" type="id"/>
+    <item name="fab_heath" type="id"/>
+</resources>

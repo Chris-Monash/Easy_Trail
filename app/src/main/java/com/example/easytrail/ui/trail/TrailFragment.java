@@ -17,7 +17,6 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.easytrail.R;
-import com.example.easytrail.StatusBar;
 import com.example.easytrail.TrailDetailActivity;
 import com.example.easytrail.adapter.TrailRecyclerViewAdapter;
 import com.example.easytrail.model.TrailResult;
@@ -43,8 +42,6 @@ public class TrailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_trail, container, false);
-
-        StatusBar.setFragmentAdapter(this, root, true);
 
         networkConnection = new NetworkConnection();
         progressBar = root.findViewById(R.id.progressbar);
@@ -95,6 +92,7 @@ public class TrailFragment extends Fragment {
         return root;
 
     }
+
 
 
 

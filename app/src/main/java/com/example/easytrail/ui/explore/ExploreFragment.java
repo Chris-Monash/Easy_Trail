@@ -23,6 +23,7 @@ import com.example.easytrail.R;
 import com.example.easytrail.adapter.ExploreAnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,12 +38,12 @@ public class ExploreFragment extends Fragment {
     NetworkConnection networkConnection = null;
     ProgressBar progressBar;
     ViewPager2 viewPager2;
+    SpeedDialView speedDialView;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_explore, container, false);
-
         networkConnection = new NetworkConnection();
         progressBar = root.findViewById(R.id.exploreAnimal_progressbar);
         viewPager2 = root.findViewById(R.id.exploreAnimalViewPager);
@@ -67,9 +68,6 @@ public class ExploreFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 final AnimalResult animal = animals.get(position);
-//                Toast.makeText(getApplicationContext(), "clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
-//                Snackbar snackbar = Snackbar.make(view,"clicked " + animal.getComm_name(), Snackbar.LENGTH_LONG);
-//                snackbar.show();
                 final Intent intent = new Intent(getContext(), AnimalDetailActivity.class);
                 Bundle animalBundle = new Bundle();
                 animalBundle.putParcelable("animal",animal);
@@ -96,11 +94,66 @@ public class ExploreFragment extends Fragment {
             }
         });
 
+
+//        speedDialView = root.findViewById(R.id.speed_dial);
+//        speedDialView.setExpansionMode(SpeedDialView.ExpansionMode.TOP);
+//        speedDialView.setMainFabOpenedDrawable(getResources().getDrawable(R.drawable.ic_close));
+//        speedDialView.setMainFabClosedBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//        speedDialView.setMainFabOpenedBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//        speedDialView.setMainFabAnimationRotateAngle(180);
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_forest, R.drawable.ic_forest)
+//                .setLabel("Forest")
+//                .setFabBackgroundColor(getResources().getColor(R.color.forest))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_heath, R.drawable.ic_heath)
+//                .setLabel("HeathLand")
+//                .setFabBackgroundColor(getResources().getColor(R.color.heath))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_wood, R.drawable.ic_woodland)
+//                .setLabel("Woodland")
+//                .setFabBackgroundColor(getResources().getColor(R.color.forest))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_riparian, R.drawable.ic_riparian)
+//                .setLabel("Riparian Zone")
+//                .setFabBackgroundColor(getResources().getColor(R.color.riparian))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_swamp, R.drawable.ic_swamp)
+//                .setLabel("Swamp")
+//                .setFabBackgroundColor(getResources().getColor(R.color.swamp))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.fab_coastal, R.drawable.ic_coastal)
+//                .setLabel("Coastal Zone")
+//                .setFabBackgroundColor(getResources().getColor(R.color.coastal))
+//                .setFabImageTintColor(getResources().getColor(R.color.text_icons))
+//                .create());
+//        speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
+//            @Override
+//            public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
+//                switch (speedDialActionItem.getId()){
+//                    case R.id.fab_forest:
+//                        Toast.makeText(getContext(), "clicked ",Toast.LENGTH_LONG).show();
+//                        speedDialView.close();
+//                    default:
+//                        speedDialView.close();
+//                }
+//               return false;
+//            }
+//        });
+
+
+
+
         GetAllAnimals getAllAnimals = new GetAllAnimals();
         getAllAnimals.execute();
 
         return root;
     }
+
 
     private class GetAllAnimals extends AsyncTask<Void,Void,String>{
         @Override

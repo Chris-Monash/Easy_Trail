@@ -93,22 +93,28 @@ public class SplashActivity extends AppCompatActivity {
 
         OnBoardingItem itemWheelchair = new OnBoardingItem();
         itemWheelchair.setTitle("Disability no more a barrier");
-        itemWheelchair.setDescription(" All the trails shown are grade 1, hence can easily be completed" +
+        itemWheelchair.setDescription(" The trails marked grade 1, can easily be completed" +
             " by both wheelchair bounded and regular public.");
         itemWheelchair.setImage(R.drawable.second);
 
         OnBoardingItem itemSpot = new OnBoardingItem();
         itemSpot.setTitle("Spotting the animals!");
         itemSpot.setDescription(" While cruising through your trail you will be shown animals that you" +
-            " might spot on your particular trail. As soon as you spot an animal click on the animal " +
-            " picture immediately to receive points.");
+            " might spot on your particular trail. As soon as you spot an animal long press on the animal " +
+            " picture immediately to receive points. However, one animal can only be spotted once");
         itemSpot.setImage(R.drawable.third);
+
+        OnBoardingItem itemSpotOption = new OnBoardingItem();
+        itemSpotOption.setTitle("More the spotting more the Points");
+        itemSpotOption.setDescription(" Each animal is awarded points based on the difficulty of spotting the animals. The points awarded for an animal spotting is as follows: Common:10 Points, Uncommon:15 Points and Rare:20 Points. And Remember Save animals One paw at a Time");
+        itemSpotOption.setImage(R.drawable.fourth);
 
 
 
         onBoardingItems.add(itemWelcome);
         onBoardingItems.add(itemWheelchair);
         onBoardingItems.add(itemSpot);
+        onBoardingItems.add(itemSpotOption);
         adapter = new OnBoardingAdapter(this,onBoardingItems);
 
 

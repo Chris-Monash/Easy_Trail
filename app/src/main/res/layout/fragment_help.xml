@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.help.HelpFragment"
+    android:id="@+id/help_main"
+    >
+
+
+    <ImageView
+        android:id="@+id/helpImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/question"
+        android:scaleType="centerCrop"
+        android:foreground="@drawable/gradient" />
+
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="60dp"
+            android:layout_marginTop="-65dp"
+            android:layout_below="@id/helpImage"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo_rounded"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Easy Trails"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_below="@id/card"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Help Menu"
+            android:textColor="#158634"
+            android:fontFamily="sans-serif-light"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:layout_below="@id/name"
+            android:layout_centerHorizontal="true"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/about_about_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="About us"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textAllCaps="false"
+            android:textAppearance="?attr/textAppearanceButton"
+            app:elevation="12dp"
+            android:layout_below="@id/help"
+            android:layout_centerHorizontal="true"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/about_instruction_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:text="How to use the Application"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textAllCaps="false"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:layout_below="@id/about_about_btn"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copyright - Team Fauna Influencer"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/about_instruction_btn"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/copyright"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/colorPrimaryDark"/>
+
+
+
+
+
+</RelativeLayout>

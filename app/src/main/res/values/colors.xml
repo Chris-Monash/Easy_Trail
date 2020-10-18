@@ -10,6 +10,12 @@
     <color name="textSecondary">#757575</color>
     <color name="colorPrimaryDark">#158634</color>
     <color name="white">#FFFFFF</color>
+    <color name="wood">#34951D</color>
+    <color name="forest">#186506</color>
+    <color name="heath">#7E6302</color>
+    <color name="swamp">#473802</color>
+    <color name="riparian">#1476AA</color>
+    <color name="coastal">#023550</color>
 
 
 

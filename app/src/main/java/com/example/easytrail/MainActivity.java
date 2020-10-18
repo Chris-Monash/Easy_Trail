@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.easytrail.ui.explore.ExploreFragment;
-import com.example.easytrail.ui.notifications.NotificationsFragment;
+import com.example.easytrail.ui.help.HelpFragment;
 import com.example.easytrail.ui.trail.TrailFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -27,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
-        StatusBar.setActivityAdapter(this,true);
+
         setContentView(R.layout.activity_main);
-//        StatusBar.setActivityAdapter(this,false);
+//        StatusBarUtil.setTransparent(this);
+//        StatusBarUtil.setLightMode(this);
+        StatusBar.setActivityAdapter(this,true);
 
 
 //        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
@@ -63,15 +65,29 @@ public class MainActivity extends AppCompatActivity {
                 switch (id){
                     case R.id.navigation_trail:
                         fragment = new TrailFragment();
+//                        StatusBarUtil.setLightMode(MainActivity.this);
+                        StatusBar.setActivityAdapter(MainActivity.this,true);
 //                        toolbar.setTitle("Trail");
+
                         break;
                     case R.id.navigation_explore:
                         fragment = new ExploreFragment();
+//                        StatusBarUtil.setLightMode(MainActivity.this);
+                        StatusBar.setActivityAdapter(MainActivity.this,true);
 //                        toolbar.setTitle("Explore");
+
                         break;
-                    case R.id.navigation_notifications:
-                        fragment = new NotificationsFragment();
+                    case R.id.navigation_help:
+
+                        fragment = new HelpFragment();
+//                        StatusBarUtil.setDarkMode(MainActivity.this);
+//                        StatusBarUtil.setTransparentForImageViewInFragment(MainActivity.this,null);
+
+
+                        StatusBar.setActivityAdapter(MainActivity.this,false);
+//                        StatusBar.setFragmentAdapter(fragment,MainActivity.this.getWindow().findViewById(R.id.content), true);
 //                        toolbar.setTitle("Notification");
+
                         break;
                 }
                 if (fragment!=null){

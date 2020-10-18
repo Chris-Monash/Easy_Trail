@@ -22,6 +22,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.easytrail.model.AnimalResult;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 
 public class AnimalDetailActivity extends AppCompatActivity {
@@ -58,6 +59,7 @@ public class AnimalDetailActivity extends AppCompatActivity {
     TextView animal_inhabitArea_tv;
     TextView animal_score_tv;
     TextView animal_find_tv;
+    ExtendedFloatingActionButton spotted_btn;
 
     CollapsingToolbarLayout coll_toolbar;
 
@@ -89,6 +91,8 @@ public class AnimalDetailActivity extends AppCompatActivity {
         animal_inhabitArea_tv = findViewById(R.id.scrolling_animal_inhabitArea_tv);
         animal_score_tv = findViewById(R.id.scrolling_animal_score_tv);
         animal_find_tv = findViewById(R.id.scrolling_animal_find_tv);
+
+//        spotted_btn = findViewById(R.id.spotted_btn);
 
 
         Bundle bundle = getIntent().getExtras();

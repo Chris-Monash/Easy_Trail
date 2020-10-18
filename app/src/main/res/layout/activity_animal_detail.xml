@@ -52,7 +52,7 @@
     <include layout="@layout/animal_scrolling"/>
 
 <!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--        android:id="@+id/startTrail_btn"-->
+<!--        android:id="@+id/spotted_btn"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_gravity="center|bottom"-->
@@ -61,7 +61,7 @@
 <!--        android:layout_marginBottom="20dp"-->
 <!--        android:fontFamily="@font/rubik"-->
 <!--        android:gravity="center"-->
-<!--        android:text="Start Trail"-->
+<!--        android:text="SPOTTED"-->
 <!--        android:textColor="#FFFFFF"-->
 <!--        android:textSize="18sp"-->
 <!--        app:backgroundTint="@color/colorPrimary"/>-->

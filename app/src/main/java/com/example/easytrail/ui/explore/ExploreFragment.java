@@ -1,19 +1,24 @@
 package com.example.easytrail.ui.explore;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.easytrail.AnimalDetailActivity;
 import com.example.easytrail.R;
 import com.example.easytrail.adapter.ExploreAnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
@@ -61,6 +66,27 @@ public class ExploreFragment extends Fragment {
         adapter.setOnItemClickListener(new ExploreAnimalRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                final AnimalResult animal = animals.get(position);
+//                Toast.makeText(getApplicationContext(), "clicked " + animal.getComm_name(),Toast.LENGTH_LONG).show();
+//                Snackbar snackbar = Snackbar.make(view,"clicked " + animal.getComm_name(), Snackbar.LENGTH_LONG);
+//                snackbar.show();
+                final Intent intent = new Intent(getContext(), AnimalDetailActivity.class);
+                Bundle animalBundle = new Bundle();
+                animalBundle.putParcelable("animal",animal);
+                intent.putExtras(animalBundle);
+                final View imageView = view.findViewById(R.id.kbvExploreAnimalImage);
+                final View name = view.findViewById(R.id.exploreAnimal_name_tv);
+                final View habitat = view.findViewById(R.id.exploreAnimal_habitat_tv);
+                ViewCompat.setTransitionName(imageView, animal.getAnimal_image());
+                ViewCompat.setTransitionName(name,animal.getComm_name());
+                ViewCompat.setTransitionName(habitat,animal.getAnimal_habitat() + animal.getComm_name());
+                String nameTest = ViewCompat.getTransitionName(name);
+                final Pair<View,String> p1 = Pair.create(name,ViewCompat.getTransitionName(name));
+                final Pair<View,String> p2 = Pair.create(imageView,ViewCompat.getTransitionName(imageView));
+                final Pair<View,String> p3 = Pair.create(habitat,ViewCompat.getTransitionName(habitat));
+
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),p1,p2,p3);
+                startActivity(intent,options.toBundle());
 
             }
 

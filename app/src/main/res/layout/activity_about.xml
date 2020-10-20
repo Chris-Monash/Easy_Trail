@@ -72,9 +72,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:text="The name of our team is Fauna Influencer which represents our goal: Using IT as a tool to provide some help in the process of saving endangered animals. We wish to make some changes over the difficulties that our society currently faces. All of us are very glad to work together to create a better future for the endangered animals."
             android:textColor="#000"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -87,6 +87,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:textSize="18dp"
             android:text="Australian Citizens (especially with mobility issues) have limited connection to the nature leading to the unawareness about native endangered species. Our application makes it easier for people with mobility issues to become wildlife advocates by giving them firsthand experiences of the great outdoors." />
 
     </LinearLayout>

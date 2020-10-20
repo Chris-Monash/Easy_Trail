@@ -41,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
             layoutOnBoardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
             next_start_btn = findViewById(R.id.buttonOnBoardingAction);
             setupOnBoardingItems();
-            viewPager2 = findViewById(R.id.onboardingViewPager);
+            viewPager2 = findViewById(R.id.onBoardingViewPager);
             viewPager2.setAdapter(adapter);
             setupOnBoardingIndicators();
             setCurrentOnBoardingIndicator(0);
@@ -67,12 +67,47 @@ public class SplashActivity extends AppCompatActivity {
             });
 
         }else {
-            boardingTime ++;
-            editor.putInt("start", boardingTime);
-            editor.commit();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            Intent tempIntent = getIntent();
+            Boolean result = tempIntent.getBooleanExtra("result",false);
+            if (result == true){
+                setContentView(R.layout.activity_splash);
+                layoutOnBoardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
+                next_start_btn = findViewById(R.id.buttonOnBoardingAction);
+                setupOnBoardingItems();
+                viewPager2 = findViewById(R.id.onBoardingViewPager);
+                viewPager2.setAdapter(adapter);
+                setupOnBoardingIndicators();
+                setCurrentOnBoardingIndicator(0);
+                viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        super.onPageSelected(position);
+                        setCurrentOnBoardingIndicator(position);
+                    }
+                });
+
+                next_start_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (viewPager2.getCurrentItem() < adapter.getItemCount()-1){
+                            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+                        }else{
+                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+            }else{
+                boardingTime ++;
+                editor.putInt("start", boardingTime);
+                editor.commit();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
         }
 
     }

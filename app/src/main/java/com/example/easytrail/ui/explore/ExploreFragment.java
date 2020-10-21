@@ -20,9 +20,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.easytrail.AnimalDetailActivity;
 import com.example.easytrail.R;
+import com.example.easytrail.StatusBar;
 import com.example.easytrail.adapter.ExploreAnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.jaeger.library.StatusBarUtil;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import org.json.JSONArray;
@@ -44,6 +46,9 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_explore, container, false);
+        StatusBarUtil.setLightMode(getActivity());
+        StatusBar.setFragmentAdapter(this,root,false);
+
         networkConnection = new NetworkConnection();
         progressBar = root.findViewById(R.id.exploreAnimal_progressbar);
         viewPager2 = root.findViewById(R.id.exploreAnimalViewPager);

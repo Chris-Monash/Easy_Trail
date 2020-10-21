@@ -14,6 +14,7 @@ import com.example.easytrail.AboutActivity;
 import com.example.easytrail.R;
 import com.example.easytrail.SplashActivity;
 import com.google.android.material.button.MaterialButton;
+import com.jaeger.library.StatusBarUtil;
 
 public class HelpFragment extends Fragment {
     MaterialButton about_about_btn;
@@ -23,6 +24,8 @@ public class HelpFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_help, container, false);
+        StatusBarUtil.setDarkMode(getActivity());
+
 
         about_about_btn = root.findViewById(R.id.about_about_btn);
         about_instruction_btn = root.findViewById(R.id.about_instruction_btn);

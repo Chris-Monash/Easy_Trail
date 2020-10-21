@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/navigation_explore"
-        android:icon="@drawable/ic_explore"
+        android:icon="@drawable/ic_pets"
         android:title="@string/title_explore"
         app:cnb_backgroundColor="@color/colorDivider"
         app:cnb_iconColor="@color/textPrimary"

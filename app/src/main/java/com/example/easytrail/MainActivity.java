@@ -14,6 +14,7 @@ import com.example.easytrail.ui.explore.ExploreFragment;
 import com.example.easytrail.ui.help.HelpFragment;
 import com.example.easytrail.ui.trail.TrailFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.jaeger.library.StatusBarUtil;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -29,22 +30,13 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setExitTransition(new Explode());
 
         setContentView(R.layout.activity_main);
-//        StatusBarUtil.setTransparent(this);
-//        StatusBarUtil.setLightMode(this);
-        StatusBar.setActivityAdapter(this,true);
+
+        StatusBarUtil.setLightMode(this);
 
 
-//        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-//            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-//        }
-//        if (Build.VERSION.SDK_INT >= 19) {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//        }
-//
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
+        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null);
+
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
@@ -66,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_trail:
                         fragment = new TrailFragment();
 //                        StatusBarUtil.setLightMode(MainActivity.this);
-                        StatusBar.setActivityAdapter(MainActivity.this,true);
+//                        StatusBar.setActivityAdapter(MainActivity.this,true);
 //                        toolbar.setTitle("Trail");
 
                         break;
                     case R.id.navigation_explore:
                         fragment = new ExploreFragment();
 //                        StatusBarUtil.setLightMode(MainActivity.this);
-                        StatusBar.setActivityAdapter(MainActivity.this,true);
+//                        StatusBar.setActivityAdapter(MainActivity.this,true);
 //                        toolbar.setTitle("Explore");
 
                         break;
@@ -83,9 +75,8 @@ public class MainActivity extends AppCompatActivity {
 //                        StatusBarUtil.setDarkMode(MainActivity.this);
 //                        StatusBarUtil.setTransparentForImageViewInFragment(MainActivity.this,null);
 
+                        //StatusBar.setActivityAdapter(MainActivity.this,false);
 
-                        StatusBar.setActivityAdapter(MainActivity.this,false);
-//                        StatusBar.setFragmentAdapter(fragment,MainActivity.this.getWindow().findViewById(R.id.content), true);
 //                        toolbar.setTitle("Notification");
 
                         break;
@@ -101,37 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-//        BottomNavigationView navView = findViewById(R.id.nav_view);
-//
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(navView, navController);
 
 
         });
 
 
     }
-//    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
-//        Window win = activity.getWindow();
-//        WindowManager.LayoutParams winParams = win.getAttributes();
-//        if (on) {
-//            winParams.flags |= bits;
-//        } else {
-//            winParams.flags &= ~bits;
-//        }
-//        win.setAttributes(winParams);
-//    }
-//        private void showCustomUI() {
-//            View decorView = getWindow().getDecorView();
-//            decorView.setSystemUiVisibility(
-//            View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//}
 
 
 

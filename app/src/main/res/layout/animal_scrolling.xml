@@ -72,6 +72,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -95,6 +96,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 tools:text="Reptile"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -118,6 +120,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 tools:text="Forest"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -141,6 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 android:gravity="center_vertical"
                 tools:text="xxx"
                 android:textSize="12sp"/>
@@ -165,6 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 android:gravity="center_vertical"
                 tools:text="xxx"
                 android:textSize="12sp"/>
@@ -189,6 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 android:gravity="center_vertical"
                 tools:text="xxx"
                 android:textSize="12sp"/>
@@ -214,6 +220,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -238,6 +245,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -262,6 +270,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -286,6 +295,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -310,6 +320,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -334,6 +345,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
+                android:textColor="@color/textPrimary"
                 tools:text="xxx"
                 android:textSize="12sp"/>
         </LinearLayout>
@@ -358,6 +370,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto"
+                android:textColor="@color/textPrimary"
                 android:gravity="center_vertical"
                 tools:text="xxx"
                 android:textSize="12sp"/>

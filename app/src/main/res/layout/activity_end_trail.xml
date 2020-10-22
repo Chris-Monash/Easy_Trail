@@ -250,7 +250,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_margin="10dp"
-                    android:fontFamily="sans-serif"
                     android:text="ANIMAL INFORMATION"
                     android:textColor="#FFFF"
                     android:theme="@style/AppTheme.NoActionBar"
@@ -259,8 +258,8 @@
                     android:textSize="12sp"
                     app:elevation="12dp"
                     android:padding="12dp"
-                    app:backgroundTint="@color/colorPrimaryDark"
-
+                    app:backgroundTint="@color/colorPrimary"
+                    android:textAppearance="?android:attr/textAppearanceButton"
                     />
                 <!--                android:background="@drawable/custom_button"-->
 
@@ -271,7 +270,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_margin="10dp"
-                    android:fontFamily="sans-serif"
                     android:text="EXIT"
                     android:textColor="#FFFF"
                     android:theme="@style/AppTheme.NoActionBar"
@@ -280,7 +278,8 @@
                     android:singleLine="true"
                     android:textSize="12sp"
                     app:elevation="12dp"
-                    app:backgroundTint="@color/colorPrimaryDark" />
+                    app:backgroundTint="@color/colorPrimary"
+                    android:textAppearance="?attr/textAppearanceButton"/>
                 <!--                android:background="@drawable/custom_button"-->
 
 

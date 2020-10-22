@@ -54,6 +54,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 public class SpottingAnimalActivity extends AppCompatActivity {
 
     private List<AnimalResult> animals;
@@ -70,7 +72,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
     TextView confirmAnimalType_tv;
     TextView confirmScore_tv;
     TextView confirmActive_tv;
+    TextView confirmActive_first;
     TextView confirmInhabit_tv;
+    TextView confirmInhabit_first;
     TextView confirmFind_tv;
     TextView spottingScore_tv;
     MaterialButton confirmSpotted_btn;
@@ -214,7 +218,9 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmAnimalType_tv = bottomSheetView.findViewById(R.id.confirmation_animalType);
                     confirmScore_tv = bottomSheetView.findViewById(R.id.confirmation_animalScore);
                     confirmActive_tv = bottomSheetView.findViewById(R.id.confirmation_activeTime_tv);
+                    confirmActive_first = bottomSheetView.findViewById(R.id.confirm_Active_first);
                     confirmInhabit_tv = bottomSheetView.findViewById(R.id.confirmation_inhabit_tv);
+                    confirmInhabit_first = bottomSheetView.findViewById(R.id.confirmation_inhabit_first);
                     confirmNot_btn = (MaterialButton) bottomSheetView.findViewById(R.id.confirmation_not);
                     confirmSpotted_btn = (MaterialButton)bottomSheetView.findViewById(R.id.confirmation_spotted);
 
@@ -231,8 +237,20 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                     confirmAnimalName_tv.setText(confirm_animalName);
                     confirmAnimalType_tv.setText(confirm_animalType);
                     confirmScore_tv.setText(String.valueOf(confirm_score) + " points");
-                    confirmActive_tv.setText(confirm_activeTime);
-                    confirmInhabit_tv.setText(confirm_inhabitArea);
+                    if (confirm_activeTime.equals(""))
+                    {
+                        confirmActive_tv.setVisibility(GONE);
+                        confirmActive_first.setVisibility(GONE);
+                    }else{
+                        confirmActive_tv.setText(confirm_activeTime);
+                    }
+                    if (confirm_inhabitArea.equals("")){
+                        confirmInhabit_tv.setVisibility(GONE);
+                        confirmInhabit_first.setVisibility(GONE);
+                    }else{
+                        confirmInhabit_tv.setText(confirm_inhabitArea);
+                    }
+
 
 
                     confirmNot_btn.setOnClickListener(new View.OnClickListener() {
@@ -357,7 +375,7 @@ public class SpottingAnimalActivity extends AppCompatActivity {
                 });
 
                 viewPager2.setPageTransformer(compositePageTransformer);
-                progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(GONE);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -7,6 +7,32 @@
     tools:context=".SplashActivity"
     android:background="@color/white">
 
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+
+
+    <LinearLayout
+        android:id="@+id/layoutOnboardingIndicators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonOnBoardingAction"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonOnBoardingAction"
         android:layout_width="wrap_content"
@@ -20,26 +46,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginRight="20dp" />
-
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/onBoardingViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-    <LinearLayout
-        android:id="@+id/layoutOnboardingIndicators"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonOnBoardingAction"
-        app:layout_constraintEnd_toStartOf="@+id/buttonOnBoardingAction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonOnBoardingAction"/>
 
 
 

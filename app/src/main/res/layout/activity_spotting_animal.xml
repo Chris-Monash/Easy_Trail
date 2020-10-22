@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
-        android:text="Scroll to view animals"
+        android:text="Click to know more"
         android:textColor="#757575"
         android:textSize="30sp"
         android:layout_below="@+id/tv2"/>
@@ -123,7 +123,7 @@
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:text = "END TRAIL"
-        android:fontFamily="sans-serif"
+        android:textAppearance="?attr/textAppearanceButton"
         android:padding="12dp"
         app:elevation="12dp"/>
 

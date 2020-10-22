@@ -141,7 +141,7 @@ public class SplashActivity extends AppCompatActivity {
 
         OnBoardingItem itemSpotOption = new OnBoardingItem();
         itemSpotOption.setTitle("More the spotting more the Points");
-        itemSpotOption.setDescription(" Each animal is awarded points based on the difficulty of spotting the animals. The points awarded for an animal spotting is as follows: Common:10 Points, Uncommon:15 Points and Rare:20 Points. And Remember Save animals One paw at a Time");
+        itemSpotOption.setDescription(" Each animal is awarded points based on the difficulty of spotting the animals. The points awarded for an animal spotting is as follows: Common:10 Points, Uncommon:15 Points, Rare:20 Points and animals on the list: 25 Points. And Remember Save animals One paw at a Time");
         itemSpotOption.setImage(R.drawable.fourth);
 
 

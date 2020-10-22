@@ -42,7 +42,7 @@ public class AnimalInfoActivity extends AppCompatActivity {
         StatusBar.setActivityAdapter(this,true);
         setContentView(R.layout.activity_animal_info);
         toolbar = findViewById(R.id.animalInfo_toolbar);
-        toolbar.setTitle("Animal Information");
+        toolbar.setTitle("Explore what you spotted");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

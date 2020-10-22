@@ -17,6 +17,22 @@
             android:background="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_below="@id/animalInfo_appbar">-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Explore what you spotted"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:textStyle="italic"-->
+<!--            android:textSize="30sp"/>-->
+<!--    </LinearLayout>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,10 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            />
     </RelativeLayout>
 
 

@@ -55,6 +55,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 tools:text="Animal abundance"
+                android:textColor="@color/textPrimary"
                 android:fontFamily="sans-serif"/>
 
             <LinearLayout

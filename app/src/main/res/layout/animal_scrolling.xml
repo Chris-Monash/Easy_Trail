@@ -175,6 +175,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/scrolling_animal_conservation_tv_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -200,6 +201,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/scrolling_animal_regionalDistribution_tv_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -250,6 +252,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/scrolling_animal_vicConservationStatus_tv_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -275,6 +278,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/scrolling_animal_activeTime_tv_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -300,6 +304,7 @@
                 android:textSize="12sp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/scrolling_animal_inhabitArea_tv_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

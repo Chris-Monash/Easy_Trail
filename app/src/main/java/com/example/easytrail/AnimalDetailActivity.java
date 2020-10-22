@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,8 @@ import com.bumptech.glide.request.target.Target;
 import com.example.easytrail.model.AnimalResult;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import static android.view.View.GONE;
 
 
 public class AnimalDetailActivity extends AppCompatActivity {
@@ -52,11 +55,16 @@ public class AnimalDetailActivity extends AppCompatActivity {
     TextView animal_size_tv;
     TextView animal_diet_tv;
     TextView animal_conservation_tv;
+    LinearLayout animal_conservation_tv_first;
     TextView animal_regionalDistribution_tv;
+    LinearLayout animal_regionalDistribution_tv_first;
     TextView animal_abundance_tv;
     TextView animal_vicConservationStatus_tv;
+    LinearLayout animal_vicConservationStatus_tv_first;
     TextView animal_activeTime_tv;
+    LinearLayout animal_activeTime_tv_first;
     TextView animal_inhabitArea_tv;
+    LinearLayout animal_inhabitArea_tv_first;
     TextView animal_score_tv;
     TextView animal_find_tv;
     ExtendedFloatingActionButton spotted_btn;
@@ -84,11 +92,16 @@ public class AnimalDetailActivity extends AppCompatActivity {
         animal_size_tv = findViewById(R.id.scrolling_animal_size_tv);
         animal_diet_tv = findViewById(R.id.scrolling_animal_diet_tv);
         animal_conservation_tv = findViewById(R.id.scrolling_animal_conservation_tv);
+        animal_conservation_tv_first = findViewById(R.id.scrolling_animal_conservation_tv_first);
         animal_regionalDistribution_tv = findViewById(R.id.scrolling_animal_regionalDistribution_tv);
+        animal_regionalDistribution_tv_first = findViewById(R.id.scrolling_animal_regionalDistribution_tv_first);
         animal_abundance_tv = findViewById(R.id.scrolling_animal_abundance_tv);
         animal_vicConservationStatus_tv = findViewById(R.id.scrolling_animal_vicConservationStatus_tv);
+        animal_vicConservationStatus_tv_first = findViewById(R.id.scrolling_animal_vicConservationStatus_tv_first);
         animal_activeTime_tv = findViewById(R.id.scrolling_animal_activeTime_tv);
+        animal_activeTime_tv_first = findViewById(R.id.scrolling_animal_activeTime_tv_first);
         animal_inhabitArea_tv = findViewById(R.id.scrolling_animal_inhabitArea_tv);
+        animal_inhabitArea_tv_first = findViewById(R.id.scrolling_animal_inhabitArea_tv_first);
         animal_score_tv = findViewById(R.id.scrolling_animal_score_tv);
         animal_find_tv = findViewById(R.id.scrolling_animal_find_tv);
 
@@ -120,12 +133,41 @@ public class AnimalDetailActivity extends AppCompatActivity {
         animal_habitat_tv.setText(animal_habitat);
         animal_size_tv.setText(animal_size);
         animal_diet_tv.setText(animal_diet);
-        animal_conservation_tv.setText(animal_conservation);
-        animal_regionalDistribution_tv.setText(animal_regionalDistribution);
+        if (animal_conservation.equals("")){
+//            animal_conservation_tv.setVisibility(GONE);
+            animal_conservation_tv_first.setVisibility(GONE);
+        }else{
+            animal_conservation_tv.setText(animal_conservation);
+        }
+        if (animal_regionalDistribution.equals("")){
+//            animal_regionalDistribution_tv.setVisibility(GONE);
+            animal_regionalDistribution_tv_first.setVisibility(GONE);
+        }else{
+            animal_regionalDistribution_tv.setText(animal_regionalDistribution);
+        }
+
         animal_abundance_tv.setText(animal_abundance);
-        animal_vicConservationStatus_tv.setText(animal_vicConservationStatus);
-        animal_activeTime_tv.setText(animal_activeTime);
-        animal_inhabitArea_tv.setText(animal_inhabitArea);
+
+        if (animal_vicConservationStatus.equals("")){
+//            animal_vicConservationStatus_tv.setVisibility(GONE);
+            animal_vicConservationStatus_tv_first.setVisibility(GONE);
+        }else{
+            animal_vicConservationStatus_tv.setText(animal_vicConservationStatus);
+        }
+
+        if (animal_activeTime.equals("")){
+//            animal_activeTime_tv.setVisibility(GONE);
+            animal_activeTime_tv_first.setVisibility(GONE);
+        }else{
+            animal_activeTime_tv.setText(animal_activeTime);
+        }
+
+        if (animal_inhabitArea.equals("")){
+//            animal_inhabitArea_tv.setVisibility(GONE);
+            animal_inhabitArea_tv_first.setVisibility(GONE);
+        }else{
+            animal_inhabitArea_tv.setText(animal_inhabitArea);
+        }
         animal_score_tv.setText(String.valueOf(animal_score));
         animal_find_tv.setText(animal_find);
 

@@ -1,7 +1,11 @@
 package com.example.easytrail.ui.trail;
 
 import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -46,6 +51,24 @@ public class TrailFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_trail, container, false);
         StatusBarUtil.setLightMode(getActivity());
         StatusBar.setFragmentAdapter(this,root,false);
+        if (!checkIfHasNetwork()){
+            AlertDialog builder  = new AlertDialog.Builder(getContext())
+                    .setTitle("Connection Failed")
+                    .setMessage("Please check")
+                    .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            })
+                    .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create();
+            builder.show();
+        }
 
         networkConnection = new NetworkConnection();
         progressBar = root.findViewById(R.id.progressbar);
@@ -155,5 +178,25 @@ public class TrailFragment extends Fragment {
         TrailResult trailResult = new TrailResult(trail_id,trail_name, address, route_type, distance, complete_time, facilities, description, trail_image, environment, difficulty_name, difficulty_image);
         trails.add(trailResult);
         adapter.addTrails(trails);
+    }
+
+
+
+
+    public boolean checkIfHasNetwork(){
+        try {
+            ConnectivityManager manger = (ConnectivityManager) getActivity()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = manger.getActiveNetworkInfo();
+            //return (info!=null && info.isConnected());//
+            if(info != null){
+                return info.isConnected();
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }

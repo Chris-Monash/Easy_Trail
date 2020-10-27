@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.easytrail.R;
 import com.example.easytrail.model.OnBoardingItem;
 
@@ -54,7 +56,11 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
         ImageView ivImage = viewHolder.imageOnBoarding_iv;
         tvTitle.setText(item.getTitle());
         tvDescription.setText(item.getDescription());
-        ivImage.setImageResource(item.getImage());
+//        ivImage.setImageResource(item.getImage());
+        Glide.with(context)
+                .load(item.getImage())
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(ivImage);
 
     }
 

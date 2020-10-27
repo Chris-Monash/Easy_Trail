@@ -96,8 +96,8 @@
         android:id="@+id/spottingAnimal_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="80dp"
         android:layout_below="@+id/tv3">
         <ProgressBar
             android:id="@+id/spottingAnimal_progressbar"

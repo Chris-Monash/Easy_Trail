@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.easytrail.adapter.OnBoardingAdapter;
 import com.example.easytrail.model.OnBoardingItem;
 import com.google.android.material.button.MaterialButton;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +32,19 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences userInfo = getSharedPreferences("start",MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfo.edit();
+        StatusBarUtil.setTranslucentForImageView(this,null);
+        StatusBarUtil.setLightMode(this);
+
+
         int boardingTime;
         boardingTime = userInfo.getInt("start",1);
         if (boardingTime == 1){
             boardingTime ++;
             editor.putInt("start", boardingTime);
             editor.commit();
+
             setContentView(R.layout.activity_splash);
+
             layoutOnBoardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
             next_start_btn = findViewById(R.id.buttonOnBoardingAction);
             setupOnBoardingItems();
@@ -71,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
             Boolean result = tempIntent.getBooleanExtra("result",false);
             if (result == true){
                 setContentView(R.layout.activity_splash);
+
                 layoutOnBoardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
                 next_start_btn = findViewById(R.id.buttonOnBoardingAction);
                 setupOnBoardingItems();
@@ -138,6 +146,7 @@ public class SplashActivity extends AppCompatActivity {
             " might spot on your particular trail. As soon as you spot an animal long press on the animal " +
             " picture immediately to receive points. However, one animal can only be spotted once");
         itemSpot.setImage(R.drawable.third);
+
 
         OnBoardingItem itemSpotOption = new OnBoardingItem();
         itemSpotOption.setTitle("More the spotting more the Points");

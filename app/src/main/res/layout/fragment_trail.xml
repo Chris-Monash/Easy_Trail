@@ -16,7 +16,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
-            android:text="Welcome,"
+            android:text="Welcome"
             android:textColor="#212121"
             android:textSize="16sp"
             android:textStyle="bold"/>

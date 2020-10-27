@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -27,6 +27,7 @@ import com.example.easytrail.TrailDetailActivity;
 import com.example.easytrail.adapter.TrailRecyclerViewAdapter;
 import com.example.easytrail.model.TrailResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jaeger.library.StatusBarUtil;
 
 import org.json.JSONArray;
@@ -52,72 +53,83 @@ public class TrailFragment extends Fragment {
         StatusBarUtil.setLightMode(getActivity());
         StatusBar.setFragmentAdapter(this,root,false);
         if (!checkIfHasNetwork()){
-            AlertDialog builder  = new AlertDialog.Builder(getContext())
-                    .setTitle("Connection Failed")
-                    .setMessage("Please check")
-                    .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+            MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(getContext())
+                    .setTitle("Error")
+                    .setMessage("No Internet Connection. Please Try Again")
 
-                }
-            })
-                    .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    }).create();
-            builder.show();
-        }
-
-        networkConnection = new NetworkConnection();
-        progressBar = root.findViewById(R.id.progressbar);
-        viewPager2 = root.findViewById(R.id.trailViewPager);
-        trails = new ArrayList<TrailResult>();
-        adapter = new TrailRecyclerViewAdapter(getContext(),trails);
-        viewPager2.setAdapter(adapter);
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+        .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1- Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
+            public void onClick(DialogInterface dialog, int which) {
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
-        });
-
-        viewPager2.setPageTransformer(compositePageTransformer);
-        GetAllTrails getAllTrails = new GetAllTrails();
-        getAllTrails.execute();
-        adapter.setOnItemClickListener(new TrailRecyclerViewAdapter.OnItemClickListener() {
+        })
+        .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                TrailResult trail = trails.get(position);
-                Intent intent = new Intent(getActivity(), TrailDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("trail",trail);
-                intent.putExtras(bundle);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            public void onClick(DialogInterface dialog, int which) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                Fragment newFragment = new TrailFragment();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,newFragment)
+                        .commit();
+            }
+
+
+        });
+        dialog.show();
+
+        }else{
+
+            networkConnection = new NetworkConnection();
+            progressBar = root.findViewById(R.id.progressbar);
+            viewPager2 = root.findViewById(R.id.trailViewPager);
+            trails = new ArrayList<TrailResult>();
+            adapter = new TrailRecyclerViewAdapter(getContext(),trails);
+            viewPager2.setAdapter(adapter);
+            viewPager2.setClipToPadding(false);
+            viewPager2.setClipChildren(false);
+            viewPager2.setOffscreenPageLimit(3);
+            viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+            CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+            compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+            compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+                @Override
+                public void transformPage(@NonNull View page, float position) {
+                    float r = 1- Math.abs(position);
+                    page.setScaleY(0.85f + r * 0.15f);
+                }
+            });
+
+            viewPager2.setPageTransformer(compositePageTransformer);
+            GetAllTrails getAllTrails = new GetAllTrails();
+            getAllTrails.execute();
+            adapter.setOnItemClickListener(new TrailRecyclerViewAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    TrailResult trail = trails.get(position);
+                    Intent intent = new Intent(getActivity(), TrailDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("trail",trail);
+                    intent.putExtras(bundle);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 //                Toast.makeText(getContext(), "clicked " + trail.getTrail_name(),Toast.LENGTH_LONG).show();
 //                Intent intent = new Intent(getActivity(), AnimalDetail.class);
 //                intent.putExtra("animal_guid", animal.guid());
 //                intent.putExtra("imageUrl",animal.getImageUrl());
 //                getActivity().startActivity(intent);
-            }
+                }
 
-            @Override
-            public void onItemLongClick(View view, int position) {
+                @Override
+                public void onItemLongClick(View view, int position) {
 
-            }
-        });
+                }
+            });
+
+
+        }
+
 
         return root;
-
     }
 
 

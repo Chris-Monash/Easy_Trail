@@ -1,7 +1,11 @@
 package com.example.easytrail.ui.explore;
 
 import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Pair;
@@ -13,6 +17,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -24,6 +29,7 @@ import com.example.easytrail.StatusBar;
 import com.example.easytrail.adapter.ExploreAnimalRecyclerViewAdapter;
 import com.example.easytrail.model.AnimalResult;
 import com.example.easytrail.networkconnection.NetworkConnection;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.jaeger.library.StatusBarUtil;
 import com.leinardi.android.speeddial.SpeedDialView;
 
@@ -49,55 +55,83 @@ public class ExploreFragment extends Fragment {
         StatusBarUtil.setLightMode(getActivity());
         StatusBar.setFragmentAdapter(this,root,false);
 
-        networkConnection = new NetworkConnection();
-        progressBar = root.findViewById(R.id.exploreAnimal_progressbar);
-        viewPager2 = root.findViewById(R.id.exploreAnimalViewPager);
-        animals = new ArrayList<AnimalResult>();
-        adapter = new ExploreAnimalRecyclerViewAdapter(getContext(),animals);
-        viewPager2.setAdapter(adapter);
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1- Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
-            }
-        });
-        viewPager2.setPageTransformer(compositePageTransformer);
-        adapter.setOnItemClickListener(new ExploreAnimalRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                final AnimalResult animal = animals.get(position);
-                final Intent intent = new Intent(getContext(), AnimalDetailActivity.class);
-                Bundle animalBundle = new Bundle();
-                animalBundle.putParcelable("animal",animal);
-                intent.putExtras(animalBundle);
-                final View imageView = view.findViewById(R.id.kbvExploreAnimalImage);
-                final View name = view.findViewById(R.id.exploreAnimal_name_tv);
-                final View habitat = view.findViewById(R.id.exploreAnimal_habitat_tv);
-                ViewCompat.setTransitionName(imageView, animal.getAnimal_image());
-                ViewCompat.setTransitionName(name,animal.getComm_name());
-                ViewCompat.setTransitionName(habitat,animal.getAnimal_habitat() + animal.getComm_name());
-                String nameTest = ViewCompat.getTransitionName(name);
-                final Pair<View,String> p1 = Pair.create(name,ViewCompat.getTransitionName(name));
-                final Pair<View,String> p2 = Pair.create(imageView,ViewCompat.getTransitionName(imageView));
-                final Pair<View,String> p3 = Pair.create(habitat,ViewCompat.getTransitionName(habitat));
 
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),p1,p2,p3);
-                startActivity(intent,options.toBundle());
+        if (!checkIfHasNetwork()){
+            MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(getContext())
+                    .setTitle("Error")
+                    .setMessage("No Internet Connection. Please Try Again")
 
-            }
+                    .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    })
+                    .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            Fragment newFragment = new ExploreFragment();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container,newFragment)
+                                    .commit();
+                        }
 
-            @Override
-            public void onItemLongClick(View view, int position) {
 
-            }
-        });
+                    })
+                    .setCancelable(false);
+            dialog.show();
+
+        }else{
+            networkConnection = new NetworkConnection();
+            progressBar = root.findViewById(R.id.exploreAnimal_progressbar);
+            viewPager2 = root.findViewById(R.id.exploreAnimalViewPager);
+            animals = new ArrayList<AnimalResult>();
+            adapter = new ExploreAnimalRecyclerViewAdapter(getContext(),animals);
+            viewPager2.setAdapter(adapter);
+            viewPager2.setClipToPadding(false);
+            viewPager2.setClipChildren(false);
+            viewPager2.setOffscreenPageLimit(3);
+            viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+            CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+            compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+            compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+                @Override
+                public void transformPage(@NonNull View page, float position) {
+                    float r = 1- Math.abs(position);
+                    page.setScaleY(0.85f + r * 0.15f);
+                }
+            });
+            viewPager2.setPageTransformer(compositePageTransformer);
+            adapter.setOnItemClickListener(new ExploreAnimalRecyclerViewAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    final AnimalResult animal = animals.get(position);
+                    final Intent intent = new Intent(getContext(), AnimalDetailActivity.class);
+                    Bundle animalBundle = new Bundle();
+                    animalBundle.putParcelable("animal",animal);
+                    intent.putExtras(animalBundle);
+                    final View imageView = view.findViewById(R.id.kbvExploreAnimalImage);
+                    final View name = view.findViewById(R.id.exploreAnimal_name_tv);
+                    final View habitat = view.findViewById(R.id.exploreAnimal_habitat_tv);
+                    ViewCompat.setTransitionName(imageView, animal.getAnimal_image());
+                    ViewCompat.setTransitionName(name,animal.getComm_name());
+                    ViewCompat.setTransitionName(habitat,animal.getAnimal_habitat() + animal.getComm_name());
+                    String nameTest = ViewCompat.getTransitionName(name);
+                    final Pair<View,String> p1 = Pair.create(name,ViewCompat.getTransitionName(name));
+                    final Pair<View,String> p2 = Pair.create(imageView,ViewCompat.getTransitionName(imageView));
+                    final Pair<View,String> p3 = Pair.create(habitat,ViewCompat.getTransitionName(habitat));
+
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),p1,p2,p3);
+                    startActivity(intent,options.toBundle());
+
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position) {
+
+                }
+            });
 
 
 //        speedDialView = root.findViewById(R.id.speed_dial);
@@ -153,10 +187,13 @@ public class ExploreFragment extends Fragment {
 
 
 
-        GetAllAnimals getAllAnimals = new GetAllAnimals();
-        getAllAnimals.execute();
+            GetAllAnimals getAllAnimals = new GetAllAnimals();
+            getAllAnimals.execute();
 
+
+        }
         return root;
+
     }
 
 
@@ -220,5 +257,22 @@ public class ExploreFragment extends Fragment {
         AnimalResult animalResult = new AnimalResult(animal_id,comm_name,sci_name,animal_type,animal_size,animal_diet,animal_location,conservation_status,regional_distribution,abundance,vic_conservation_status,act,animal_image,animal_habitat,animal_score, active_time, inhabit_area);
         animals.add(animalResult);
         adapter.addExploreAnimals(animals);
+    }
+
+    public boolean checkIfHasNetwork(){
+        try {
+            ConnectivityManager manger = (ConnectivityManager) getActivity()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = manger.getActiveNetworkInfo();
+            //return (info!=null && info.isConnected());//
+            if(info != null){
+                return info.isConnected();
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }

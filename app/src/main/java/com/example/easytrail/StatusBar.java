@@ -40,9 +40,7 @@ public class StatusBar {
 
 
     public static void setFragmentAdapter(Fragment fragment, View rootView, boolean headerIsImage) {
- /*
- 适配安卓4.4--5.0
- */
+        //aim to android 4.4 - 5.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             if (!headerIsImage) {
                 int resourceId = fragment.getActivity().getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -50,9 +48,7 @@ public class StatusBar {
                 rootView.setPadding(0, height, 0, 0);
             }
         }
- /*
- 适配安卓5.0以上
- */
+        // android 5.0 and above
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             if (!headerIsImage) {
                 int resourceId = fragment.getActivity().getResources().getIdentifier("status_bar_height", "dimen", "android");

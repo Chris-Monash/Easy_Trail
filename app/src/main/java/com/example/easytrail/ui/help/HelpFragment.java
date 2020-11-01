@@ -20,7 +20,6 @@ public class HelpFragment extends Fragment {
     MaterialButton about_about_btn;
     MaterialButton about_instruction_btn;
 
-    private NotificationsViewModel notificationsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_help, container, false);

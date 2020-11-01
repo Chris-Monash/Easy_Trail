@@ -39,7 +39,6 @@ import java.util.List;
 
 public class TrailFragment extends Fragment {
 
-    private TrailViewModel trailViewModel;
     private List<TrailResult> trails;
     private TrailRecyclerViewAdapter adapter;
     ProgressBar progressBar;
